@@ -1,0 +1,190 @@
+﻿/*
+ * Copyright 2016 Systemic Pty Ltd
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using Sif.Framework.Demo.Au.Provider.Models;
+using Sif.Framework.Demo.Au.Provider.Utils;
+using Sif.Framework.Model.Query;
+using Sif.Framework.Service.Providers;
+using Sif.Specification.DataModel.Au;
+using System;
+using System.Collections.Generic;
+
+namespace Sif.Framework.Demo.Au.Provider.Services
+{
+
+    public class StudentPersonalService : IBasicProviderService<StudentPersonal>
+    {
+        private static IDictionary<string, StudentPersonal> studentsCache = new Dictionary<string, StudentPersonal>();
+        private static Random random = new Random();
+
+        private static StudentPersonal CreateBartSimpson()
+        {
+
+            string[] text = new string[]
+            {
+                @"<MedicalCondition>
+                    <ConditionID>Unique Medical Condition ID</ConditionID>
+                    <Condition>Condition</Condition>
+                    <Severity>Condition Severity</Severity>
+                    <Details>Condition Details</Details>
+                </MedicalCondition>"
+            };
+
+            SIF_ExtendedElementsTypeSIF_ExtendedElement extendedElement = new SIF_ExtendedElementsTypeSIF_ExtendedElement { Name = "MedicalConditions", Text = text };
+            SIF_ExtendedElementsTypeSIF_ExtendedElement[] extendedElements = new SIF_ExtendedElementsTypeSIF_ExtendedElement[] { extendedElement };
+            NameOfRecordType name = new NameOfRecordType { Type = NameOfRecordTypeType.LGL, FamilyName = "Simpson", GivenName = "Bart" };
+            PersonInfoType personInfo = new PersonInfoType { Name = name };
+            StudentPersonal studentPersonal = new StudentPersonal { RefId = Guid.NewGuid().ToString(), LocalId = "666", PersonInfo = personInfo, SIF_ExtendedElements = extendedElements };
+
+            return studentPersonal;
+        }
+
+        private static StudentPersonal CreateStudent()
+        {
+            NameOfRecordType name = new NameOfRecordType { Type = NameOfRecordTypeType.LGL, FamilyName = RandomNameGenerator.FamilyName, GivenName = RandomNameGenerator.GivenName };
+            PersonInfoType personInfo = new PersonInfoType { Name = name };
+            StudentPersonal studentPersonal = new StudentPersonal { RefId = Guid.NewGuid().ToString(), LocalId = random.Next(10000, 99999).ToString(), PersonInfo = personInfo };
+
+            return studentPersonal;
+        }
+
+        private static IDictionary<string, StudentPersonal> CreateStudents(int count)
+        {
+            IDictionary<string, StudentPersonal> studentPersonalsCache = new Dictionary<string, StudentPersonal>();
+
+            if (count > 0)
+            {
+                StudentPersonal bartSimpson = CreateBartSimpson();
+                studentPersonalsCache.Add(bartSimpson.RefId, bartSimpson);
+
+                for (int i = 2; i <= count; i++)
+                {
+                    StudentPersonal studentPersonal = CreateStudent();
+                    studentPersonalsCache.Add(studentPersonal.RefId, studentPersonal);
+                }
+
+            }
+
+            return studentPersonalsCache;
+        }
+
+        static StudentPersonalService()
+        {
+            studentsCache = CreateStudents(20);
+        }
+
+        public StudentPersonal Create(StudentPersonal obj, bool? mustUseAdvisory = null, string zone = null, string context = null)
+        {
+            string refId = Guid.NewGuid().ToString();
+            obj.RefId = refId;
+            studentsCache.Add(refId, obj);
+
+            return obj;
+        }
+
+        public StudentPersonal Retrieve(string refId, string zone = null, string context = null)
+        {
+            StudentPersonal student;
+
+            if (!studentsCache.TryGetValue(refId, out student))
+            {
+                student = null;
+            }
+
+            return student;
+        }
+
+        public List<StudentPersonal> Retrieve(uint? pageIndex = null, uint? pageSize = null, string zone = null, string context = null)
+        {
+            List<StudentPersonal> retrievedStudents = new List<StudentPersonal>();
+
+            if ("Gov".Equals(zone) && "Curr".Equals(context))
+            {
+                List<StudentPersonal> allStudents = new List<StudentPersonal>();
+                allStudents.AddRange(studentsCache.Values);
+
+                if (pageIndex.HasValue && pageSize.HasValue)
+                {
+                    uint index = pageIndex.Value * pageSize.Value;
+                    uint count = pageSize.Value;
+
+                    if (studentsCache.Values.Count < (index + count))
+                    {
+                        count = (uint)studentsCache.Values.Count - index;
+                    }
+                    else
+                    {
+                        count = pageSize.Value;
+                    }
+
+                    if (index <= studentsCache.Values.Count)
+                    {
+                        retrievedStudents = allStudents.GetRange((int)index, (int)count);
+                    }
+
+                }
+                else
+                {
+                    retrievedStudents = allStudents;
+                }
+
+            }
+
+            return retrievedStudents;
+        }
+
+        public List<StudentPersonal> Retrieve(StudentPersonal obj, uint? pageIndex = null, uint? pageSize = null, string zone = null, string context = null)
+        {
+            List<StudentPersonal> students = new List<StudentPersonal>();
+
+            foreach (StudentPersonal student in studentsCache.Values)
+            {
+
+                if (student.PersonInfo.Name.FamilyName.Equals(obj.PersonInfo.Name.FamilyName) && student.PersonInfo.Name.GivenName.Equals(obj.PersonInfo.Name.GivenName))
+                {
+                    students.Add(student);
+                }
+
+            }
+
+            return students;
+        }
+
+        public List<StudentPersonal> Retrieve(IEnumerable<EqualCondition> conditions, uint? pageIndex = null, uint? pageSize = null, string zone = null, string context = null)
+        {
+            List<StudentPersonal> students = new List<StudentPersonal>();
+            students.Add(CreateBartSimpson());
+
+            return students;
+        }
+
+        public void Update(StudentPersonal obj, string zone = null, string context = null)
+        {
+
+            if (studentsCache.ContainsKey(obj.RefId))
+            {
+                studentsCache.Remove(obj.RefId);
+                studentsCache.Add(obj.RefId, obj);
+            }
+
+        }
+
+        public void Delete(string refId, string zone = null, string context = null)
+        {
+            studentsCache.Remove(refId);
+        }
+    }
+}
