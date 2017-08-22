@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sif.NdsProvider", "Sif.NdsProvider\Sif.NdsProvider.csproj", "{F73FF644-B6DA-42F1-8CED-3BE1A90F3BF5}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Sif.NdsProvider", "Sif.NdsProvider\Sif.NdsProvider.xproj", "{F73FF644-B6DA-42F1-8CED-3BE1A90F3BF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sif.Framework", "sif3-framework-dotnet-master\Code\Sif3Framework\Sif.Framework\Sif.Framework.csproj", "{202E8CB9-9AED-4034-908F-0B3BB04B171A}"
 EndProject
@@ -30,8 +30,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {77F4B339-26F9-4B22-8BC0-62D38ECEDED7}
 	EndGlobalSection
 EndGlobal
