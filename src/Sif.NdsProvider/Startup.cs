@@ -36,7 +36,7 @@ namespace SifNdsProvider
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-
+            //testing 
             services.AddMvc();
         }
 
