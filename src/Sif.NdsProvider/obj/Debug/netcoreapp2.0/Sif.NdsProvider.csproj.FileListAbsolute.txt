@@ -1,0 +1,11 @@
+C:\A4LRepos\sif3-CEDS-NDS-dotnet\sif3-CEDS-NDS-dotnet\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.NdsProvider.deps.json
+C:\A4LRepos\sif3-CEDS-NDS-dotnet\sif3-CEDS-NDS-dotnet\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.NdsProvider.runtimeconfig.json
+C:\A4LRepos\sif3-CEDS-NDS-dotnet\sif3-CEDS-NDS-dotnet\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.NdsProvider.runtimeconfig.dev.json
+C:\A4LRepos\sif3-CEDS-NDS-dotnet\sif3-CEDS-NDS-dotnet\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.NdsProvider.dll
+C:\A4LRepos\sif3-CEDS-NDS-dotnet\sif3-CEDS-NDS-dotnet\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.NdsProvider.pdb
+C:\A4LRepos\sif3-CEDS-NDS-dotnet\sif3-CEDS-NDS-dotnet\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.csprojResolveAssemblyReference.cache
+C:\A4LRepos\sif3-CEDS-NDS-dotnet\sif3-CEDS-NDS-dotnet\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.csproj.CoreCompileInputs.cache
+C:\A4LRepos\sif3-CEDS-NDS-dotnet\sif3-CEDS-NDS-dotnet\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.AssemblyInfoInputs.cache
+C:\A4LRepos\sif3-CEDS-NDS-dotnet\sif3-CEDS-NDS-dotnet\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.AssemblyInfo.cs
+C:\A4LRepos\sif3-CEDS-NDS-dotnet\sif3-CEDS-NDS-dotnet\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.dll
+C:\A4LRepos\sif3-CEDS-NDS-dotnet\sif3-CEDS-NDS-dotnet\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.pdb
