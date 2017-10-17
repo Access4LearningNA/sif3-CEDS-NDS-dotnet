@@ -18010,7 +18010,7 @@ namespace Sif.Specification.DataModel.Us {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(gEducationOrganizationType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(seaType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(naSchoolType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(schoolType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SchoolType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(naLEAType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(leaType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(gSchoolType))]
@@ -20016,7 +20016,7 @@ namespace Sif.Specification.DataModel.Us {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(gEducationOrganizationType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(seaType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(naSchoolType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(schoolType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SchoolType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(naLEAType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(leaType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(gSchoolType))]
@@ -20834,7 +20834,7 @@ namespace Sif.Specification.DataModel.Us {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(gEducationOrganizationType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(seaType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(naSchoolType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(schoolType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SchoolType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(naLEAType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(leaType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(gSchoolType))]
@@ -20856,7 +20856,7 @@ namespace Sif.Specification.DataModel.Us {
     /// <remarks/>
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(seaType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(naSchoolType))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(schoolType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SchoolType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(naLEAType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(leaType))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(gSchoolType))]
@@ -20871,7 +20871,7 @@ namespace Sif.Specification.DataModel.Us {
     }
 
     /// <remarks/>
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(schoolType))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(SchoolType))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -31307,8 +31307,9 @@ namespace Sif.Specification.DataModel.Us {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://www.sifassociation.org/datamodel/na/3.4")]
     [System.Xml.Serialization.XmlRootAttribute("school", Namespace = "http://www.sifassociation.org/datamodel/na/3.4", IsNullable = false)]
-    public partial class schoolType : naSchoolType
+    public partial class SchoolType : naSchoolType
     {
+       
     }
 
     /// <remarks/>
@@ -48574,11 +48575,11 @@ namespace Sif.Specification.DataModel.Us {
     public partial class schoolCollectionType
     {
 
-        private schoolType[] schoolField;
+        private SchoolType[] schoolField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("school")]
-        public schoolType[] school
+        public SchoolType[] school
         {
             get
             {

@@ -7,6 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Sif.NdsProvider.Mappers;
+using System.Web.Mvc.Routing;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace SifNdsProvider
 {
@@ -23,6 +28,7 @@ namespace SifNdsProvider
             {
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
+                
             }
 
             builder.AddEnvironmentVariables();
@@ -37,7 +43,14 @@ namespace SifNdsProvider
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             //testing 
-            services.AddMvc();
+            // services.AddMvc();
+            AutoMapperProfileConfiguration.Configure();
+            // services.AddMvc();
+            //services.AddRouting();
+            services.AddMvc(options =>
+            {
+                options.InputFormatters.Add(new XmlSerializerInputFormatter());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -45,12 +58,28 @@ namespace SifNdsProvider
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            env.EnvironmentName = EnvironmentName.Development;
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/error");
+            }
             app.UseApplicationInsightsRequestTelemetry();
 
             app.UseApplicationInsightsExceptionTelemetry();
 
-            app.UseMvc();
+            //app.UseMvc(config =>
+            //{
+            //    config.MapRoute(
+            //        name: "Default",
+            //        template: "{controller}/{action}/{id?}",
+            //        defaults: new { controller = "School", Action = "Post" }
+            //        );
+            //}); // Use MVC from Dependency.
+
         }
     }
 }

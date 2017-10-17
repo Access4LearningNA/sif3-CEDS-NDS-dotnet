@@ -6,7 +6,7 @@
     <AssemblyName>Sif.NdsProvider</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>Sif.NdsProvider</PackageId>
-    <RuntimeFrameworkVersion>1.0.4</RuntimeFrameworkVersion>
+   
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
   </PropertyGroup>
 
@@ -17,8 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="EntityFramework" Version="6.1.3" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.3" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Xml" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.0.0" />
@@ -29,6 +35,22 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Sif.Framework">
+      <HintPath>bin\Debug\netcoreapp2.0\Sif.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="SIF.NDSDataModel">
+      <HintPath>..\SIF.NDSDataModel\bin\Debug\SIF.NDSDataModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Sif.Specification.DataModel.Us">
+      <HintPath>..\sif3-framework-dotnet-master\Code\Sif3Specification\Sif.Specification.DataModel.Us.v3_4\bin\Debug\Sif.Specification.DataModel.Us.dll</HintPath>
+    </Reference>
+    <Reference Include="Sif.Specification.Infrastructure">
+      <HintPath>bin\Debug\netcoreapp2.0\Sif.Specification.Infrastructure.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
