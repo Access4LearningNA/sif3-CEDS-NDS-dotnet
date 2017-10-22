@@ -19,10 +19,10 @@ namespace Sif.NdsProvider.Mappers
             var createdBy = "SIFAdmin";
             var statusId = "1";
             Random ran = new Random();
-            Mapper.Initialize(cfg => cfg.CreateMap<School, SchoolAttributes>()
-           .ForMember(dest => dest.CreatedBy, map => map.MapFrom(s => createdBy))
-           .ForMember(dest => dest.CreateDateTime, map => map.MapFrom(s => DateTime.Now))
-
+            Mapper.Initialize(cfg => cfg.CreateMap<StudentAttendanceSummarys, RoleAttendance>()
+            .ForMember(dest => dest.AttendanceRate, map => map.MapFrom(s => s.counts.First().rate)));
+            Mapper.Initialize(cfg => cfg.CreateMap<StudentAttendanceSummarys, K12StudentEnrollment>()
+            .ForMember(dest => dest.RefPublicSchoolResidence, map => map.MapFrom(s => s.resident))
             );
         }
     }
