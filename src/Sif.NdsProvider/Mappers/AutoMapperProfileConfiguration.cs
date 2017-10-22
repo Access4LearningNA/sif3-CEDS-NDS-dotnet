@@ -17,6 +17,10 @@ namespace Sif.NdsProvider.Mappers
                 x.AddProfile<StudentMapper>();
                 x.AddProfile<StudentAttendanceEventMapper>();
                 x.AddProfile<StudentSectionMarkScoresMapper>();
+                x.AddProfile<StudentAttendanceSummaryMapper>();
+                x.AddProfile<StudentProgramAssociationsMapper>();
+                x.AddProfile<StudentSchoolAssociationMapper>();
+                x.AddProfile<StudentSectionAssociationsMapper>();
             });
         }
     }
