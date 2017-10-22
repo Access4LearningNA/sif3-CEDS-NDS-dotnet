@@ -14,6 +14,9 @@ namespace Sif.NdsProvider.Mappers
             {
                 x.AddProfile<SchoolAttributesMapper>();
                 x.AddProfile<OrganizationMapper>();
+                x.AddProfile<StudentMapper>();
+                x.AddProfile<StudentAttendanceEventMapper>();
+                x.AddProfile<StudentSectionMarkScoresMapper>();
             });
         }
     }

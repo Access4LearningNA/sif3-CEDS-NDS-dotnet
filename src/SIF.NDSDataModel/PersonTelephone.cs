@@ -19,7 +19,5 @@ namespace SIF.NDSDataModel
         public bool PrimaryTelephoneNumberIndicator { get; set; }
 
         public int? RefPersonTelephoneNumberTypeId { get; set; }
-
-        public virtual Person Person { get; set; }
     }
 }

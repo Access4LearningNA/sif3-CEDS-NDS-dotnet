@@ -25,3 +25,12 @@ D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.Specification.Da
 D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\SIF.NDSDataModel.dll
 D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\SIF.NDSDataModel.pdb
 D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\SIF.NDSDataModel.dll.config
+D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\SifFramework.config
+D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.Framework.dll
+D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\log4net.dll
+D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\NHibernate.dll
+D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.Framework.pdb
+D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.Framework.xml
+D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.Framework.dll.config
+D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\log4net.xml
+D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\NHibernate.xml

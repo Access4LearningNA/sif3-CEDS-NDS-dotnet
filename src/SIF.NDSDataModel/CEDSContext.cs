@@ -47,6 +47,29 @@ namespace SIF.NDSDataModel
         public virtual DbSet<SchoolAttributes> SchoolAttributes { get; set; }
         public virtual DbSet<SchoolAttributesCleanRecords> SchoolAttributesCleanRecords { get; set; }
         public virtual DbSet<SchoolAttributesErrorRecords> SchoolAttributesErrorRecords { get; set; }
+        public virtual DbSet<K12StudentAcademicRecord> K12StudentAcademicRecord { get; set; }
+        public virtual DbSet<K12StudentCohort> K12StudentCohort { get; set; }
+        public virtual DbSet<PersonBirthplace> PersonBirthplace { get; set; }
+        public virtual DbSet<PersonDisability> PersonDisability { get; set; }
+        public virtual DbSet<PersonLanguage> PersonLanguage { get; set; }
+        public virtual DbSet<ProgramParticipationSpecialEducation> ProgramParticipationSpecialEducation { get; set; }
+        public virtual DbSet<ProgramParticipationTitleI> ProgramParticipationTitleI { get; set; }
+        public virtual DbSet<PsStudentCohort> PsStudentCohort { get; set; }
+        public virtual DbSet<RefISO6393Language> RefISO6393Language { get; set; }
+        public virtual DbSet<ELEnrollment> ELEnrollment { get; set; }
+        public virtual DbSet<K12StudentEnrollment> K12StudentEnrollment { get; set; }
+        public virtual DbSet<CourseSectionSchedule> CourseSectionSchedule { get; set; }
+        public virtual DbSet<CteCourse> CteCourse { get; set; }
+        public virtual DbSet<K12StaffAssignment> K12StaffAssignment { get; set; }
+        public virtual DbSet<K12StudentCourseSection> K12StudentCourseSection { get; set; }
+        public virtual DbSet<ProgramParticipationCte> ProgramParticipationCte { get; set; }
+        public virtual DbSet<PsStudentSection> PsStudentSection { get; set; }
+        public virtual DbSet<RoleAttendanceEvent> RoleAttendanceEvent { get; set; }
+        public virtual DbSet<K12StudentCourseSectionMark> K12StudentCourseSectionMark { get; set; }
+        public virtual DbSet<OrganizationCalendar> OrganizationCalendar { get; set; }
+        public virtual DbSet<OrganizationCalendarEvent> OrganizationCalendarEvent { get; set; }
+        public virtual DbSet<OrganizationCalendarSession> OrganizationCalendarSession { get; set; }
+        public virtual DbSet<RoleAttendance> RoleAttendance { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -181,11 +204,6 @@ namespace SIF.NDSDataModel
 
             modelBuilder.Entity<Person>()
                 .HasMany(e => e.PersonOtherName)
-                .WithRequired(e => e.Person)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Person>()
-                .HasMany(e => e.PersonTelephone)
                 .WithRequired(e => e.Person)
                 .WillCascadeOnDelete(false);
 
@@ -797,6 +815,110 @@ namespace SIF.NDSDataModel
                .HasMany(e => e.PersonAddress)
                .WithRequired(e => e.Person)
                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<K12StudentAcademicRecord>()
+                .Property(e => e.CreditsAttemptedCumulative)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<K12StudentAcademicRecord>()
+                .Property(e => e.CreditsEarnedCumulative)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<K12StudentAcademicRecord>()
+                .Property(e => e.GradePointsEarnedCumulative)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<K12StudentAcademicRecord>()
+                .Property(e => e.GradePointAverageCumulative)
+                .HasPrecision(9, 4);
+
+            modelBuilder.Entity<K12StudentAcademicRecord>()
+                .Property(e => e.ProjectedGraduationDate)
+                .IsFixedLength();
+
+            modelBuilder.Entity<K12StudentAcademicRecord>()
+                .Property(e => e.DiplomaOrCredentialAwardDate)
+                .IsFixedLength();
+
+            modelBuilder.Entity<K12StudentCohort>()
+                .Property(e => e.CohortYear)
+                .IsFixedLength();
+
+            modelBuilder.Entity<K12StudentCohort>()
+                .Property(e => e.CohortGraduationYear)
+                .IsFixedLength();
+
+            modelBuilder.Entity<K12StudentCohort>()
+                .Property(e => e.GraduationRateSurveyCohortYear)
+                .IsFixedLength();
+
+            modelBuilder.Entity<ProgramParticipationSpecialEducation>()
+                .Property(e => e.SpecialEducationFTE)
+                .HasPrecision(5, 4);
+
+            modelBuilder.Entity<PsStudentCohort>()
+                .Property(e => e.CohortGraduationYear)
+                .IsFixedLength();
+
+            modelBuilder.Entity<RefISO6393Language>()
+                .Property(e => e.SortOrder)
+                .HasPrecision(6, 2);
+
+            modelBuilder.Entity<ELEnrollment>()
+                .Property(e => e.NumberOfDaysInAttendance)
+                .HasPrecision(8, 2);
+
+            modelBuilder.Entity<CteCourse>()
+                .Property(e => e.AvailableCarnegieUnitCredit)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<CteCourse>()
+                .Property(e => e.SCEDCourseCode)
+                .IsFixedLength();
+
+            modelBuilder.Entity<K12StaffAssignment>()
+                .Property(e => e.FullTimeEquivalency)
+                .HasPrecision(5, 4);
+
+            modelBuilder.Entity<K12StaffAssignment>()
+                .Property(e => e.ContributionPercentage)
+                .HasPrecision(5, 2);
+
+            modelBuilder.Entity<K12StudentCourseSection>()
+                .Property(e => e.NumberOfCreditsAttempted)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<K12StudentCourseSection>()
+                .Property(e => e.NumberOfCreditsEarned)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<PsStudentSection>()
+                .Property(e => e.NumberOfCreditsEarned)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<PsStudentSection>()
+                .Property(e => e.QualityPointsEarned)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<OrganizationCalendar>()
+                .Property(e => e.CalendarYear)
+                .IsFixedLength();
+
+            modelBuilder.Entity<OrganizationCalendarSession>()
+                .Property(e => e.InstructionalMinutes)
+                .HasPrecision(18, 0);
+
+            modelBuilder.Entity<RoleAttendance>()
+                .Property(e => e.NumberOfDaysInAttendance)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<RoleAttendance>()
+                .Property(e => e.NumberOfDaysAbsent)
+                .HasPrecision(9, 2);
+
+            modelBuilder.Entity<RoleAttendance>()
+                .Property(e => e.AttendanceRate)
+                .HasPrecision(5, 4);
         }
     }
 }

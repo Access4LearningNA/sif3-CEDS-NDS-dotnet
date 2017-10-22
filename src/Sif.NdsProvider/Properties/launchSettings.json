@@ -11,7 +11,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/Schools",
+      "launchUrl": "api/Values",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -19,7 +19,7 @@
     "SifNdsProvider": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:65016/api/Schools",
+      "launchUrl": "http://localhost:65016/api/Values",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

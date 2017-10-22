@@ -22,8 +22,8 @@ namespace Sif.NdsProvider.Services
             var school = Mapper.Map<List<SchoolAttributes>>(schoolObj);
             using (var _context = new CEDSContext())
             {
-                foreach(var schattr in school )
-                _context.SchoolAttributes.Add(schattr);
+                foreach (var schattr in school)
+                    _context.SchoolAttributes.Add(schattr);
                 _context.SaveChanges();
             }
             var ndsSchool = Mapper.Map<Organization>(school);
@@ -31,17 +31,17 @@ namespace Sif.NdsProvider.Services
             {
 
                 _context.Organization.Add(ndsSchool);
-                if(ndsSchool.OrganizationWebsite !=null)
-                _context.OrganizationWebsite.Add(ndsSchool.OrganizationWebsite);
+                if (ndsSchool.OrganizationWebsite != null)
+                    _context.OrganizationWebsite.Add(ndsSchool.OrganizationWebsite);
                 if (ndsSchool.OrganizationTelephone != null)
                     foreach (var orgtel in ndsSchool.OrganizationTelephone)
-                    _context.OrganizationTelephone.Add(orgtel);
-                if(ndsSchool.OrganizationEmail !=null)
-                foreach(var orgEmail in ndsSchool.OrganizationEmail)
-                    _context.OrganizationEmail.Add(orgEmail);
-                if(ndsSchool.OrganizationDetail !=null)
-                foreach(var orgDetail in ndsSchool.OrganizationDetail)
-                    _context.OrganizationDetail.Add(orgDetail);
+                        _context.OrganizationTelephone.Add(orgtel);
+                if (ndsSchool.OrganizationEmail != null)
+                    foreach (var orgEmail in ndsSchool.OrganizationEmail)
+                        _context.OrganizationEmail.Add(orgEmail);
+                if (ndsSchool.OrganizationDetail != null)
+                    foreach (var orgDetail in ndsSchool.OrganizationDetail)
+                        _context.OrganizationDetail.Add(orgDetail);
                 _context.SaveChanges();
             }
             return schoolObj;
