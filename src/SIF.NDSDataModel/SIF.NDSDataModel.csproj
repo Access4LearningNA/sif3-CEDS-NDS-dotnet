@@ -51,15 +51,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CEDSContext.cs" />
+    <Compile Include="Course.cs" />
+    <Compile Include="CourseSection.cs" />
+    <Compile Include="CourseSectionLocation.cs" />
     <Compile Include="CourseSectionSchedule.cs" />
     <Compile Include="CteCourse.cs" />
     <Compile Include="ELEnrollment.cs" />
+    <Compile Include="Incident.cs" />
     <Compile Include="K12School.cs" />
     <Compile Include="K12StaffAssignment.cs" />
     <Compile Include="K12StudentAcademicRecord.cs" />
     <Compile Include="K12StudentCohort.cs" />
     <Compile Include="K12StudentCourseSection.cs" />
     <Compile Include="K12StudentCourseSectionMark.cs" />
+    <Compile Include="K12StudentDiscipline.cs" />
     <Compile Include="K12StudentEnrollment.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LocationAddress.cs" />

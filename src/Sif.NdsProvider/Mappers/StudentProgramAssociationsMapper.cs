@@ -17,9 +17,9 @@ namespace Sif.NdsProvider.Mappers
             var statusId = "1";
             Random ran = new Random();
             Mapper.Initialize(cfg => cfg.CreateMap<StudentSchoolAssociation, K12StudentEnrollment>()
-           .ForMember(dest => dest/*No Mapping*/, map => map.MapFrom(s => s.entryDate))
-           .ForMember(dest => dest.RefEntryType, map => map.MapFrom(s => s.entryType.code))
-           .ForMember(dest => dest/*No Mapping*/, map => map.MapFrom(s => s.exitDate)));
+           //.ForMember(dest => dest/*No Mapping*/, map => map.MapFrom(s => s.entryDate))
+           .ForMember(dest => dest.RefEntryType, map => map.MapFrom(s => s.entryType.code)));
+          // .ForMember(dest => dest/*No Mapping*/, map => map.MapFrom(s => s.exitDate)));
         }
     }
 }

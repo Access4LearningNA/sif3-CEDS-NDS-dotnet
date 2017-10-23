@@ -21,6 +21,12 @@ namespace Sif.NdsProvider.Mappers
                 x.AddProfile<StudentProgramAssociationsMapper>();
                 x.AddProfile<StudentSchoolAssociationMapper>();
                 x.AddProfile<StudentSectionAssociationsMapper>();
+                x.AddProfile<AddressMapper>();
+                x.AddProfile<SectionMapper>();
+                x.AddProfile<CourseMapper>();
+                x.AddProfile<SchoolCalendarMapper>();
+                x.AddProfile<SchoolCalendarItemMapper>();
+                x.AddProfile<DisciplineIncidentMapper>();
             });
         }
     }

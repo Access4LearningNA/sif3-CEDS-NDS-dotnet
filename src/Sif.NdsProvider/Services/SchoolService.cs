@@ -19,14 +19,14 @@ namespace Sif.NdsProvider.Services
         {
             string refId = Guid.NewGuid().ToString();
             schoolObj.refId = refId;
-            var school = Mapper.Map<List<SchoolAttributes>>(schoolObj);
-            using (var _context = new CEDSContext())
-            {
-                foreach (var schattr in school)
-                    _context.SchoolAttributes.Add(schattr);
-                _context.SaveChanges();
-            }
-            var ndsSchool = Mapper.Map<Organization>(school);
+            //var school = Mapper.Map<List<SchoolAttributes>>(schoolObj);
+            //using (var _context = new CEDSContext())
+            //{
+            //    foreach (var schattr in school)
+            //        _context.SchoolAttributes.Add(schattr);
+            //    _context.SaveChanges();
+            //}
+            var ndsSchool = Mapper.Map<Organization>(schoolObj);
             using (var _context = new CEDSContext())
             {
 

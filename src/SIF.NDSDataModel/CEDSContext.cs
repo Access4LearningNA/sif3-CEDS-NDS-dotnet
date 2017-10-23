@@ -11,7 +11,7 @@ namespace SIF.NDSDataModel
             : base("name=CEDSContext")
         {
         }
-
+       
         public virtual DbSet<K12School> K12School { get; set; }
         public virtual DbSet<Location> Location { get; set; }
         public virtual DbSet<LocationAddress> LocationAddress { get; set; }
@@ -70,7 +70,11 @@ namespace SIF.NDSDataModel
         public virtual DbSet<OrganizationCalendarEvent> OrganizationCalendarEvent { get; set; }
         public virtual DbSet<OrganizationCalendarSession> OrganizationCalendarSession { get; set; }
         public virtual DbSet<RoleAttendance> RoleAttendance { get; set; }
-
+        public virtual DbSet<CourseSection> CourseSection { get; set; }
+        public virtual DbSet<CourseSectionLocation> CourseSectionLocation { get; set; }
+        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<Incident> Incident { get; set; }
+        public virtual DbSet<K12StudentDiscipline> K12StudentDiscipline { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Location>()
@@ -919,6 +923,24 @@ namespace SIF.NDSDataModel
             modelBuilder.Entity<RoleAttendance>()
                 .Property(e => e.AttendanceRate)
                 .HasPrecision(5, 4);
+            modelBuilder.Entity<CourseSection>()
+               .Property(e => e.AvailableCarnegieUnitCredit)
+               .HasPrecision(9, 2);
+
+            modelBuilder.Entity<CourseSection>()
+                .Property(e => e.TimeRequiredForCompletion)
+                .HasPrecision(9, 0);
+
+            modelBuilder.Entity<CourseSection>()
+                .HasMany(e => e.CourseSectionLocation)
+                .WithRequired(e => e.CourseSection)
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Course>()
+                .Property(e => e.CreditValue)
+                .HasPrecision(9, 2);
+            modelBuilder.Entity<K12StudentDiscipline>()
+               .Property(e => e.DurationOfDisciplinaryAction)
+               .HasPrecision(9, 2);
         }
     }
 }
