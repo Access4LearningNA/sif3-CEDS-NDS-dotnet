@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using System.Web.Http;
+using Sif.NdsProvider.Mappers;
 
 namespace SifNdsProvider
 {
@@ -36,8 +39,22 @@ namespace SifNdsProvider
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-            //testing 
+
+            // services.AddMvc().AddXmlSerializerFormatters();
+            //   services.AddMvc()
+            //.AddMvcOptions(opt => opt.InputFormatters.Add(new XmlDataContractSerializerInputFormatter()));
             services.AddMvc();
+            services.AddMvcCore()
+                 .AddJsonFormatters().AddXmlSerializerFormatters();
+            //services.AddMvc(config =>
+            //{
+            //    // Add XML Content Negotiation
+
+            //    config.RespectBrowserAcceptHeader = true;
+            //    config.InputFormatters.Add(new XmlSerializerInputFormatter());
+            //    config.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+            //});
+            AutoMapperProfileConfiguration.Configure();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
