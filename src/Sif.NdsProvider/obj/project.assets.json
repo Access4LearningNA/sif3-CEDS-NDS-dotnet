@@ -31,15 +31,18 @@
           "lib/netstandard1.3/AutoMapper.dll": {}
         }
       },
-      "EntityFramework/6.1.3": {
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/3.0.1": {
         "type": "package",
+        "dependencies": {
+          "AutoMapper": "6.1.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
+          "Microsoft.Extensions.DependencyModel": "2.0.0"
+        },
         "compile": {
-          "lib/net45/EntityFramework.SqlServer.dll": {},
-          "lib/net45/EntityFramework.dll": {}
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         },
         "runtime": {
-          "lib/net45/EntityFramework.SqlServer.dll": {},
-          "lib/net45/EntityFramework.dll": {}
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
       "Libuv/1.10.0": {
@@ -133,28 +136,6 @@
           "lib/netstandard1.6/Microsoft.AI.DependencyCollector.dll": {}
         }
       },
-      "Microsoft.AspNet.Mvc/5.2.3": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "[3.2.3, 3.3.0)",
-          "Microsoft.AspNet.WebPages": "[3.2.3, 3.3.0)"
-        },
-        "compile": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Razor/3.2.3": {
-        "type": "package",
-        "compile": {
-          "lib/net45/System.Web.Razor.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Razor.dll": {}
-        }
-      },
       "Microsoft.AspNet.WebApi.Client/5.2.3": {
         "type": "package",
         "compile": {
@@ -186,25 +167,6 @@
         },
         "runtime": {
           "lib/net45/System.Web.Http.WebHost.dll": {}
-        }
-      },
-      "Microsoft.AspNet.WebPages/3.2.3": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "[3.2.3, 3.3.0)",
-          "Microsoft.Web.Infrastructure": "1.0.0"
-        },
-        "compile": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
-        },
-        "runtime": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
         }
       },
       "Microsoft.AspNetCore/2.0.0": {
@@ -1886,15 +1848,6 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll": {}
-        }
-      },
-      "Microsoft.Web.Infrastructure/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
-        },
-        "runtime": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
         }
       },
       "Microsoft.Win32.Registry/4.4.0": {
@@ -3744,31 +3697,14 @@
         "lib/netstandard1.3/AutoMapper.xml"
       ]
     },
-    "EntityFramework/6.1.3": {
-      "sha512": "2xzFHAF3VVdmTR3//MygtQpwfbDjeaq+nQwCcokLzen7MKHOojPaxNPQPa4diHY1QtcR7zlHAJHNRqPB7W2Syw==",
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/3.0.1": {
+      "sha512": "i3IAYqWdE2UbqsmiiXE2L3khtKwkr+J8mT0zvUaiFUg72zC6BgLBo3dFvU5krq7QKBSsKVQ0NTCl/NmDoC0Hng==",
       "type": "package",
-      "path": "entityframework/6.1.3",
+      "path": "automapper.extensions.microsoft.dependencyinjection/3.0.1",
       "files": [
-        "EntityFramework.6.1.3.nupkg.sha512",
-        "EntityFramework.nuspec",
-        "content/App.config.transform",
-        "content/Web.config.transform",
-        "lib/net40/EntityFramework.SqlServer.dll",
-        "lib/net40/EntityFramework.SqlServer.xml",
-        "lib/net40/EntityFramework.dll",
-        "lib/net40/EntityFramework.xml",
-        "lib/net45/EntityFramework.SqlServer.dll",
-        "lib/net45/EntityFramework.SqlServer.xml",
-        "lib/net45/EntityFramework.dll",
-        "lib/net45/EntityFramework.xml",
-        "tools/EntityFramework.PowerShell.Utility.dll",
-        "tools/EntityFramework.PowerShell.dll",
-        "tools/EntityFramework.psd1",
-        "tools/EntityFramework.psm1",
-        "tools/about_EntityFramework.help.txt",
-        "tools/init.ps1",
-        "tools/install.ps1",
-        "tools/migrate.exe"
+        "automapper.extensions.microsoft.dependencyinjection.3.0.1.nupkg.sha512",
+        "automapper.extensions.microsoft.dependencyinjection.nuspec",
+        "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll"
       ]
     },
     "Libuv/1.10.0": {
@@ -3840,30 +3776,6 @@
         "microsoft.applicationinsights.dependencycollector.nuspec"
       ]
     },
-    "Microsoft.AspNet.Mvc/5.2.3": {
-      "sha512": "i8jZf5QrbcFmjiYWRD7o7qTak/oXKxV80MgP4cZ33A8GC0RBtBIdZ1VHaloGUg+qsHUz5rVkGpwenM+ugDz5PA==",
-      "type": "package",
-      "path": "microsoft.aspnet.mvc/5.2.3",
-      "files": [
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "Microsoft.AspNet.Mvc.5.2.3.nupkg.sha512",
-        "Microsoft.AspNet.Mvc.nuspec",
-        "lib/net45/System.Web.Mvc.dll",
-        "lib/net45/System.Web.Mvc.xml"
-      ]
-    },
-    "Microsoft.AspNet.Razor/3.2.3": {
-      "sha512": "leta+Q73O7+pR8ThTqXmwaNMSqwZQQ3BHfpUHd8S1XaUWe1jRVLitMHqo1AmY7wPNLyankPA1beiUKEGj8Q3Dw==",
-      "type": "package",
-      "path": "microsoft.aspnet.razor/3.2.3",
-      "files": [
-        "Microsoft.AspNet.Razor.3.2.3.nupkg.sha512",
-        "Microsoft.AspNet.Razor.nuspec",
-        "lib/net45/System.Web.Razor.dll",
-        "lib/net45/System.Web.Razor.xml"
-      ]
-    },
     "Microsoft.AspNet.WebApi.Client/5.2.3": {
       "sha512": "3kiI8peSXbXHDDrRuo+QaX0iCEVRe0nvn2dBDRw656uPX32UalbBlSIDUDlJxu05eau4tnuhsikiUuugvvoUoQ==",
       "type": "package",
@@ -3898,25 +3810,6 @@
         "Microsoft.AspNet.WebApi.WebHost.nuspec",
         "lib/net45/System.Web.Http.WebHost.dll",
         "lib/net45/System.Web.Http.WebHost.xml"
-      ]
-    },
-    "Microsoft.AspNet.WebPages/3.2.3": {
-      "sha512": "zbtxBERla5RE/mhftwbrXOzc0r6lh8WcnjpGW7QQe+PvSDDx1BgsTUGzfCXO/vJznHNpY5oCSYLt8Q5vUu7F0g==",
-      "type": "package",
-      "path": "microsoft.aspnet.webpages/3.2.3",
-      "files": [
-        "Content/Web.config.install.xdt",
-        "Content/Web.config.uninstall.xdt",
-        "Microsoft.AspNet.WebPages.3.2.3.nupkg.sha512",
-        "Microsoft.AspNet.WebPages.nuspec",
-        "lib/net45/System.Web.Helpers.dll",
-        "lib/net45/System.Web.Helpers.xml",
-        "lib/net45/System.Web.WebPages.Deployment.dll",
-        "lib/net45/System.Web.WebPages.Deployment.xml",
-        "lib/net45/System.Web.WebPages.Razor.dll",
-        "lib/net45/System.Web.WebPages.Razor.xml",
-        "lib/net45/System.Web.WebPages.dll",
-        "lib/net45/System.Web.WebPages.xml"
       ]
     },
     "Microsoft.AspNetCore/2.0.0": {
@@ -5553,16 +5446,6 @@
         "lib/netstandard2.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.xml",
         "microsoft.visualstudio.web.codegenerators.mvc.2.0.0.nupkg.sha512",
         "microsoft.visualstudio.web.codegenerators.mvc.nuspec"
-      ]
-    },
-    "Microsoft.Web.Infrastructure/1.0.0": {
-      "sha512": "FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
-      "type": "package",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "files": [
-        "lib/net40/Microsoft.Web.Infrastructure.dll",
-        "microsoft.web.infrastructure.1.0.0.nupkg.sha512",
-        "microsoft.web.infrastructure.nuspec"
       ]
     },
     "Microsoft.Win32.Registry/4.4.0": {
@@ -10143,9 +10026,8 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "AutoMapper >= 6.1.1",
-      "EntityFramework >= 6.1.3",
+      "AutoMapper.Extensions.Microsoft.DependencyInjection >= 3.0.1",
       "Microsoft.ApplicationInsights.AspNetCore >= 2.1.1",
-      "Microsoft.AspNet.Mvc >= 5.2.3",
       "Microsoft.AspNet.WebApi.Core >= 5.2.3",
       "Microsoft.AspNet.WebApi.WebHost >= 5.2.3",
       "Microsoft.AspNetCore >= 2.0.0",
@@ -10156,6 +10038,7 @@
       "Microsoft.AspNetCore.Server.IISIntegration >= 2.0.0",
       "Microsoft.AspNetCore.Server.Kestrel >= 2.0.0",
       "Microsoft.AspNetCore.StaticFiles >= 2.0.0",
+      "Microsoft.EntityFrameworkCore >= 2.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 2.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 2.0.0",
@@ -10230,11 +10113,11 @@
             "target": "Package",
             "version": "5.2.3"
           },
-          "Microsoft.AspNet.Mvc": {
-            "target": "Package",
-            "version": "5.2.3"
-          },
           "Microsoft.AspNetCore": {
+            "target": "Package",
+            "version": "2.0.0"
+          },
+          "Microsoft.EntityFrameworkCore": {
             "target": "Package",
             "version": "2.0.0"
           },
@@ -10257,6 +10140,10 @@
           "Microsoft.EntityFrameworkCore.Tools": {
             "target": "Package",
             "version": "2.0.0"
+          },
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+            "target": "Package",
+            "version": "3.0.1"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
@@ -10334,10 +10221,6 @@
           "Microsoft.AspNetCore.Routing": {
             "target": "Package",
             "version": "2.0.0"
-          },
-          "EntityFramework": {
-            "target": "Package",
-            "version": "6.1.3"
           }
         },
         "imports": [
@@ -10349,36 +10232,6 @@
     }
   },
   "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'EntityFramework 6.1.3' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "EntityFramework",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Mvc 5.2.3' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Mvc",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Razor 3.2.3' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Razor",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",
@@ -10405,26 +10258,6 @@
       "warningLevel": 1,
       "message": "Package 'Microsoft.AspNet.WebApi.WebHost 5.2.3' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.WebApi.WebHost",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.WebPages 3.2.3' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.WebPages",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v2.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Web.Infrastructure 1.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Web.Infrastructure",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.0"
       ]

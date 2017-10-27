@@ -10,6 +10,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using System.Web.Http;
 using Sif.NdsProvider.Mappers;
+using SIF.NDSDataModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace SifNdsProvider
 {
@@ -39,13 +41,16 @@ namespace SifNdsProvider
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-
+            
             // services.AddMvc().AddXmlSerializerFormatters();
             //   services.AddMvc()
             //.AddMvcOptions(opt => opt.InputFormatters.Add(new XmlDataContractSerializerInputFormatter()));
             services.AddMvc();
+           
             services.AddMvcCore()
                  .AddJsonFormatters().AddXmlSerializerFormatters();
+         var connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<CEDSContext>(options => options.UseSqlServer(connection));
             //services.AddMvc(config =>
             //{
             //    // Add XML Content Negotiation
@@ -54,6 +59,7 @@ namespace SifNdsProvider
             //    config.InputFormatters.Add(new XmlSerializerInputFormatter());
             //    config.OutputFormatters.Add(new XmlSerializerOutputFormatter());
             //});
+
             AutoMapperProfileConfiguration.Configure();
         }
 

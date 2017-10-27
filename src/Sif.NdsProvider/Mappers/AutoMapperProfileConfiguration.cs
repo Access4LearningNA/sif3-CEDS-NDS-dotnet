@@ -7,9 +7,10 @@ namespace Sif.NdsProvider.Mappers
 {
     public static class AutoMapperProfileConfiguration
     {
-      
-       public static void Configure()
+
+        public static void Configure()
         {
+            
             Mapper.Initialize(x =>
             {
                 x.AddProfile<SchoolAttributesMapper>();

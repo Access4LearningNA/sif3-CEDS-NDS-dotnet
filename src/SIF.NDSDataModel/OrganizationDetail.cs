@@ -1,12 +1,11 @@
 namespace SIF.NDSDataModel
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+    
 
-    [Table("ODS.OrganizationDetail")]
+    [Table("OrganizationDetail", Schema = "ODS")]
     public partial class OrganizationDetail
     {
         public int OrganizationDetailId { get; set; }
@@ -25,8 +24,6 @@ namespace SIF.NDSDataModel
 
         public DateTime? RecordEndDateTime { get; set; }
 
-        public virtual Organization Organization { get; set; }
-
-        public virtual RefOrganizationType RefOrganizationType { get; set; }
+       
     }
 }

@@ -6,7 +6,7 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.OrganizationIdentifier")]
+    [Table("OrganizationIdentifier", Schema = "ODS")]
     public partial class OrganizationIdentifier
     {
         public int OrganizationIdentifierId { get; set; }
@@ -22,6 +22,6 @@ namespace SIF.NDSDataModel
 
         public virtual Organization Organization { get; set; }
 
-        public virtual RefOrganizationIdentifierType RefOrganizationIdentifierType { get; set; }
+       
     }
 }

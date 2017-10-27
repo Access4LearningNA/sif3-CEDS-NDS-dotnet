@@ -6,9 +6,10 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.OrganizationOperationalStatus")]
+    [Table("OrganizationOperationalStatus", Schema = "ODS")]
     public partial class OrganizationOperationalStatus
     {
+        [Key]
         public int OrganizationOperationalStatusId { get; set; }
 
         public int OrganizationId { get; set; }

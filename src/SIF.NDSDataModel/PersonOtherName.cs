@@ -6,7 +6,7 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.PersonOtherName")]
+    [Table("PersonOtherName", Schema = "ODS")]
     public partial class PersonOtherName
     {
         public int PersonOtherNameId { get; set; }

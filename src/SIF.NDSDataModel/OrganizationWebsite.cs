@@ -6,11 +6,11 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.OrganizationWebsite")]
+    [Table("OrganizationWebsite", Schema = "ODS")]
     public partial class OrganizationWebsite
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+      [Key]
+      [ForeignKey("Organization")]
         public int OrganizationId { get; set; }
 
         [StringLength(300)]

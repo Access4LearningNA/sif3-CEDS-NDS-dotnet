@@ -3,6 +3,8 @@
 using SIF.NDSDataModel;
 using System.Data.SqlClient;
 using System.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Sif.NdsProvider.Services.Commons
 {
     public static class CommonMethods
@@ -10,10 +12,13 @@ namespace Sif.NdsProvider.Services.Commons
          public static string GetCodesetCode(string tableName,string idColumn,string codeSet)
         {
             string result = null;
-            using (var _context = new CEDSContext())
-            {
+            var optionsBuilder = new DbContextOptionsBuilder<CEDSContext>();
 
-                using (var connection = new SqlConnection(_context.Database.Connection.ConnectionString))
+            optionsBuilder.UseSqlServer("Server=10.10.1.219;Database=CEDS_NDS;Trusted_Connection=True;MultipleActiveResultSets=true");
+            using (var _context = new CEDSContext(optionsBuilder.Options))
+            {
+                
+                using (var connection = new SqlConnection(_context.Database.GetDbConnection().ConnectionString))
                 {
                     connection.Open();
                     using (var cmd = new SqlCommand())
@@ -23,30 +28,29 @@ namespace Sif.NdsProvider.Services.Commons
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandText = "SIF.USP_GetIdValueByCode";
                         cmd.Parameters.Add("@TableName", SqlDbType.VarChar, 50).Value = tableName;
-                        cmd.Parameters.Add("@CodeColumn", SqlDbType.VarChar, 50).Value = "Description";
+                        cmd.Parameters.Add("@CodeColumn", SqlDbType.VarChar, 50).Value = "Code";
                         cmd.Parameters.Add("@IdColumn", SqlDbType.VarChar, 50).Value = idColumn;
                         cmd.Parameters.Add("@CodeValue", SqlDbType.VarChar, 50).Value = codeSet;
                         SqlParameter p1 = new SqlParameter("retValue", SqlDbType.Int);
                         p1.Direction = ParameterDirection.ReturnValue;
                         cmd.Parameters.Add(p1);
-                        using (SqlDataReader rdr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
                         {
                             while (rdr.Read())
                             {
-
-                                string value = rdr.GetString(rdr.GetOrdinal(idColumn));
+                                 result = rdr[idColumn].ToString();
 
                             }
                             rdr.Close();
                         }
 
-
-                        result = (cmd.Parameters["retValue"].Value).ToString();
+                        
                         return result;
                     }
                 }
             }
                 
         }
+       
     }
 }

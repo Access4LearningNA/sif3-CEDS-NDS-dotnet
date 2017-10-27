@@ -1,12 +1,11 @@
 namespace SIF.NDSDataModel
 {
-    using System;
-    using System.Collections.Generic;
+   
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+   
 
-    [Table("ODS.OrganizationTelephone")]
+    [Table("OrganizationTelephone", Schema = "ODS")]
     public partial class OrganizationTelephone
     {
         public int OrganizationTelephoneId { get; set; }
@@ -21,6 +20,6 @@ namespace SIF.NDSDataModel
 
         public int? RefInstitutionTelephoneTypeId { get; set; }
 
-        public virtual Organization Organization { get; set; }
+      
     }
 }

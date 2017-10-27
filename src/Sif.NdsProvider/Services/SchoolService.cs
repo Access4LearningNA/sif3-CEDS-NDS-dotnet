@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Sif.Framework.Model.Query;
 using Sif.Framework.Service.Providers;
 using Sif.Framework.Service.Serialisation;
@@ -17,33 +18,74 @@ namespace Sif.NdsProvider.Services
        
         public School Create(School schoolObj, bool? mustUseAdvisory = null, string zone = null, string context = null)
         {
+
             string refId = Guid.NewGuid().ToString();
             schoolObj.refId = refId;
-            //var school = Mapper.Map<List<SchoolAttributes>>(schoolObj);
-            //using (var _context = new CEDSContext())
-            //{
-            //    foreach (var schattr in school)
-            //        _context.SchoolAttributes.Add(schattr);
-            //    _context.SaveChanges();
-            //}
-            var ndsSchool = Mapper.Map<Organization>(schoolObj);
-            using (var _context = new CEDSContext())
+            var optionsBuilder = new DbContextOptionsBuilder<CEDSContext>();
+            optionsBuilder.UseSqlServer("Server=10.10.1.219;Database=CEDS_NDS;User Id=SIFNDSAdmin;password=admin#123;MultipleActiveResultSets=true;App=EntityFramework");
+            var org = new Organization();
+            var person = new Person();
+            using (var _context = new CEDSContext(optionsBuilder.Options))
             {
+                _context.Organization.Add(org);
+                var orgDetail = Mapper.Map<OrganizationDetail>(schoolObj);
+                orgDetail.OrganizationId = org.OrganizationId;
+                orgDetail.RecordStartDateTime = DateTime.Now;
+                _context.OrganizationDetail.Add(orgDetail);
+                if (schoolObj.phoneNumberList != null)
+                {
+                    var orgPhone = Mapper.Map<OrganizationTelephone>(schoolObj);
+                    orgPhone.OrganizationId = org.OrganizationId;
+                    _context.OrganizationTelephone.Add(orgPhone);
+                }
+                if (schoolObj.emailList != null)
+                {
+                    var orgEmail = Mapper.Map<OrganizationEmail>(schoolObj);
+                    orgEmail.OrganizationId = org.OrganizationId;
+                    _context.OrganizationEmail.Add(orgEmail);
+                }
+                if (schoolObj.operationalStatus != null)
+                {
+                    var orgOperationalStatus = Mapper.Map<OrganizationOperationalStatus>(schoolObj);
+                    orgOperationalStatus.OrganizationId = org.OrganizationId;
+                    _context.OrganizationOperationalStatus.Add(orgOperationalStatus);
+                }
+                if (schoolObj.localId != null)
+                {
+                    var orgIdentifier = Mapper.Map<OrganizationIdentifier>(schoolObj);
+                    orgIdentifier.OrganizationId = org.OrganizationId;
+                    _context.OrganizationIdentifier.Add(orgIdentifier);
+                }
+              
+                if (schoolObj.schoolContactList != null)
+                {
+                    _context.Person.Add(person);
+                    var perDetails = Mapper.Map<PersonDetail>(schoolObj);
 
-                _context.Organization.Add(ndsSchool);
-                if (ndsSchool.OrganizationWebsite != null)
-                    _context.OrganizationWebsite.Add(ndsSchool.OrganizationWebsite);
-                if (ndsSchool.OrganizationTelephone != null)
-                    foreach (var orgtel in ndsSchool.OrganizationTelephone)
-                        _context.OrganizationTelephone.Add(orgtel);
-                if (ndsSchool.OrganizationEmail != null)
-                    foreach (var orgEmail in ndsSchool.OrganizationEmail)
-                        _context.OrganizationEmail.Add(orgEmail);
-                if (ndsSchool.OrganizationDetail != null)
-                    foreach (var orgDetail in ndsSchool.OrganizationDetail)
-                        _context.OrganizationDetail.Add(orgDetail);
+                    perDetails.PersonId = person.PersonId;
+                    perDetails.RecordStartDateTime = DateTime.Now;
+                    _context.PersonDetail.Add(perDetails);
+                    var perAddr = Mapper.Map<PersonAddress>(schoolObj);
+                    perAddr.PersonId = person.PersonId;
+                    _context.PersonAddress.Add(perAddr);
+                    //var perOtherName=Mapper.Map<PersonOtherName>
+                }
+                if (schoolObj.schoolFocusList != null && schoolObj.schoolSector != null)
+                {
+                    var orgK12School = Mapper.Map<K12School>(schoolObj);
+                    orgK12School.OrganizationId = org.OrganizationId;
+                    orgK12School.RecordStartDateTime = DateTime.Now;
+                    _context.K12School.Add(orgK12School);
+                }
+                if (schoolObj.schoolURL != null)
+                {
+                     var orgWebSite = Mapper.Map<OrganizationWebsite>(schoolObj);
+                    orgWebSite.OrganizationId = org.OrganizationId;
+                    _context.OrganizationWebsite.Add(orgWebSite);
+                }
                 _context.SaveChanges();
             }
+
             return schoolObj;
         }
 

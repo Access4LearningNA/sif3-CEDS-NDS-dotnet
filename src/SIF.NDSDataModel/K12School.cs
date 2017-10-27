@@ -6,7 +6,7 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.K12School")]
+    [Table("K12School", Schema = "ODS")]
     public partial class K12School
     {
         public int OrganizationId { get; set; }
@@ -45,7 +45,7 @@ namespace SIF.NDSDataModel
         public DateTime? CharterSchoolContractRenewalDate { get; set; }
 
         public int? RefCharterSchoolManagementOrganizationTypeId { get; set; }
-
+        [Key]
         public int K12SchoolId { get; set; }
 
         public DateTime RecordStartDateTime { get; set; }
@@ -54,8 +54,6 @@ namespace SIF.NDSDataModel
 
         public virtual Organization Organization { get; set; }
 
-        public virtual RefSchoolLevel RefSchoolLevel { get; set; }
-
-        public virtual RefSchoolType RefSchoolType { get; set; }
+       
     }
 }

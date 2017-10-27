@@ -6,7 +6,7 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.OrganizationEmail")]
+    [Table("OrganizationEmail", Schema = "ODS")]
     public partial class OrganizationEmail
     {
         public int OrganizationEmailId { get; set; }
@@ -18,8 +18,6 @@ namespace SIF.NDSDataModel
 
         public int? RefEmailTypeId { get; set; }
 
-        public virtual Organization Organization { get; set; }
-
-        public virtual RefEmailType RefEmailType { get; set; }
+       
     }
 }

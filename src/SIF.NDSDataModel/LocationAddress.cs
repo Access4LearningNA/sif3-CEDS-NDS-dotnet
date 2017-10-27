@@ -47,8 +47,6 @@ namespace SIF.NDSDataModel
 
         public virtual Location Location { get; set; }
 
-        public virtual RefCountry RefCountry { get; set; }
-
-        public virtual RefState RefState { get; set; }
+       
     }
 }

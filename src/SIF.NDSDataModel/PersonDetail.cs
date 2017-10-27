@@ -6,7 +6,7 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.PersonDetail")]
+    [Table("PersonDetail", Schema = "ODS")]
     public partial class PersonDetail
     {
         public int PersonDetailId { get; set; }
@@ -57,10 +57,6 @@ namespace SIF.NDSDataModel
 
         public DateTime? RecordEndDateTime { get; set; }
 
-        public virtual Person Person { get; set; }
-
-        public virtual RefSex RefSex { get; set; }
-
-        public virtual RefState RefState { get; set; }
+      
     }
 }

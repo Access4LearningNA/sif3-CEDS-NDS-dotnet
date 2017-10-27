@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "331ddcf3aede75cb82af5104349385b9f2033f2b"
+    "signature": "87d71e9892ec3435c806f25d93962e77f9ed8da5"
   },
   "compilationOptions": {
     "defines": [
@@ -24,9 +24,8 @@
       "Sif.NdsProvider/1.0.0": {
         "dependencies": {
           "AutoMapper": "6.1.1",
-          "EntityFramework": "6.1.3",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "3.0.1",
           "Microsoft.ApplicationInsights.AspNetCore": "2.1.1",
-          "Microsoft.AspNet.Mvc": "5.2.3",
           "Microsoft.AspNet.WebApi.Core": "5.2.3",
           "Microsoft.AspNet.WebApi.WebHost": "5.2.3",
           "Microsoft.AspNetCore": "2.0.0",
@@ -37,6 +36,7 @@
           "Microsoft.AspNetCore.Server.IISIntegration": "2.0.0",
           "Microsoft.AspNetCore.Server.Kestrel": "2.0.0",
           "Microsoft.AspNetCore.StaticFiles": "2.0.0",
+          "Microsoft.EntityFrameworkCore": "2.0.0",
           "Microsoft.EntityFrameworkCore.Design": "2.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "2.0.0",
@@ -92,14 +92,17 @@
           "lib/netstandard1.3/AutoMapper.dll": {}
         }
       },
-      "EntityFramework/6.1.3": {
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/3.0.1": {
+        "dependencies": {
+          "AutoMapper": "6.1.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
+          "Microsoft.Extensions.DependencyModel": "2.0.0"
+        },
         "runtime": {
-          "lib/net45/EntityFramework.SqlServer.dll": {},
-          "lib/net45/EntityFramework.dll": {}
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         },
         "compile": {
-          "lib/net45/EntityFramework.SqlServer.dll": {},
-          "lib/net45/EntityFramework.dll": {}
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
       "Libuv/1.10.0": {
@@ -189,26 +192,6 @@
           "lib/netstandard1.6/Microsoft.AI.DependencyCollector.dll": {}
         }
       },
-      "Microsoft.AspNet.Mvc/5.2.3": {
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "3.2.3",
-          "Microsoft.AspNet.WebPages": "3.2.3"
-        },
-        "runtime": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        },
-        "compile": {
-          "lib/net45/System.Web.Mvc.dll": {}
-        }
-      },
-      "Microsoft.AspNet.Razor/3.2.3": {
-        "runtime": {
-          "lib/net45/System.Web.Razor.dll": {}
-        },
-        "compile": {
-          "lib/net45/System.Web.Razor.dll": {}
-        }
-      },
       "Microsoft.AspNet.WebApi.Client/5.2.3": {
         "runtime": {
           "lib/net45/System.Net.Http.Formatting.dll": {}
@@ -237,24 +220,6 @@
         },
         "compile": {
           "lib/net45/System.Web.Http.WebHost.dll": {}
-        }
-      },
-      "Microsoft.AspNet.WebPages/3.2.3": {
-        "dependencies": {
-          "Microsoft.AspNet.Razor": "3.2.3",
-          "Microsoft.Web.Infrastructure": "1.0.0"
-        },
-        "runtime": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
-        },
-        "compile": {
-          "lib/net45/System.Web.Helpers.dll": {},
-          "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
         }
       },
       "Microsoft.AspNetCore/2.0.0": {
@@ -1625,14 +1590,6 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll": {}
-        }
-      },
-      "Microsoft.Web.Infrastructure/1.0.0": {
-        "runtime": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
-        },
-        "compile": {
-          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
         }
       },
       "Microsoft.Win32.Registry/4.4.0": {
@@ -3156,12 +3113,12 @@
       "path": "automapper/6.1.1",
       "hashPath": "automapper.6.1.1.nupkg.sha512"
     },
-    "EntityFramework/6.1.3": {
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/3.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-2xzFHAF3VVdmTR3//MygtQpwfbDjeaq+nQwCcokLzen7MKHOojPaxNPQPa4diHY1QtcR7zlHAJHNRqPB7W2Syw==",
-      "path": "entityframework/6.1.3",
-      "hashPath": "entityframework.6.1.3.nupkg.sha512"
+      "sha512": "sha512-i3IAYqWdE2UbqsmiiXE2L3khtKwkr+J8mT0zvUaiFUg72zC6BgLBo3dFvU5krq7QKBSsKVQ0NTCl/NmDoC0Hng==",
+      "path": "automapper.extensions.microsoft.dependencyinjection/3.0.1",
+      "hashPath": "automapper.extensions.microsoft.dependencyinjection.3.0.1.nupkg.sha512"
     },
     "Libuv/1.10.0": {
       "type": "package",
@@ -3191,20 +3148,6 @@
       "path": "microsoft.applicationinsights.dependencycollector/2.4.1",
       "hashPath": "microsoft.applicationinsights.dependencycollector.2.4.1.nupkg.sha512"
     },
-    "Microsoft.AspNet.Mvc/5.2.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-i8jZf5QrbcFmjiYWRD7o7qTak/oXKxV80MgP4cZ33A8GC0RBtBIdZ1VHaloGUg+qsHUz5rVkGpwenM+ugDz5PA==",
-      "path": "microsoft.aspnet.mvc/5.2.3",
-      "hashPath": "microsoft.aspnet.mvc.5.2.3.nupkg.sha512"
-    },
-    "Microsoft.AspNet.Razor/3.2.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-leta+Q73O7+pR8ThTqXmwaNMSqwZQQ3BHfpUHd8S1XaUWe1jRVLitMHqo1AmY7wPNLyankPA1beiUKEGj8Q3Dw==",
-      "path": "microsoft.aspnet.razor/3.2.3",
-      "hashPath": "microsoft.aspnet.razor.3.2.3.nupkg.sha512"
-    },
     "Microsoft.AspNet.WebApi.Client/5.2.3": {
       "type": "package",
       "serviceable": true,
@@ -3225,13 +3168,6 @@
       "sha512": "sha512-bhm4/BKdS3t6nK2R3NjCpxulcwtMFiHqVBDLuN3W5So1PhZfE+RBs7eVazGOhsEKCk7PoSmiSnl9DG0cpyfHtA==",
       "path": "microsoft.aspnet.webapi.webhost/5.2.3",
       "hashPath": "microsoft.aspnet.webapi.webhost.5.2.3.nupkg.sha512"
-    },
-    "Microsoft.AspNet.WebPages/3.2.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-zbtxBERla5RE/mhftwbrXOzc0r6lh8WcnjpGW7QQe+PvSDDx1BgsTUGzfCXO/vJznHNpY5oCSYLt8Q5vUu7F0g==",
-      "path": "microsoft.aspnet.webpages/3.2.3",
-      "hashPath": "microsoft.aspnet.webpages.3.2.3.nupkg.sha512"
     },
     "Microsoft.AspNetCore/2.0.0": {
       "type": "package",
@@ -3981,13 +3917,6 @@
       "sha512": "sha512-pRNaVqgHcQoPQt2CLYDkImYKkmo7pcvJE1VudM4AMX9vRJNMkWzP82WcHlo2pDNrcG1Rhr7s2RSWPdwSwilYWw==",
       "path": "microsoft.visualstudio.web.codegenerators.mvc/2.0.0",
       "hashPath": "microsoft.visualstudio.web.codegenerators.mvc.2.0.0.nupkg.sha512"
-    },
-    "Microsoft.Web.Infrastructure/1.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
-      "path": "microsoft.web.infrastructure/1.0.0",
-      "hashPath": "microsoft.web.infrastructure.1.0.0.nupkg.sha512"
     },
     "Microsoft.Win32.Registry/4.4.0": {
       "type": "package",
