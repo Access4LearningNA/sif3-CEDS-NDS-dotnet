@@ -46,7 +46,6 @@ namespace Sif.NdsProvider.Mappers
                 .ForMember(dest => dest.CharterSchoolIndicator, map => map.MapFrom(src => src.schoolSector.ToString() == "School" || src.schoolSector.ToString() == "CollegeUniversity"|| src.schoolSector.ToString() == "NA" ? 1:0))
                 .ForMember(dest=>dest.RefAdministrativeFundingControlId,map=>map.MapFrom(src=>src.schoolFocusList.FirstOrDefault() !=null ?CommonMethods.GetCodesetCode("RefAdministrativeFundingControl", "RefAdministrativeFundingControlId", src.schoolFocusList.FirstOrDefault()):null))
                .ForMember(dest => dest.RefSchoolLevelId, map => map.MapFrom(src => src.schoolType.code.ToString() != null ? CommonMethods.GetCodesetCode("refschoollevel", "RefSchoolLevelId", src.schoolType.code.ToString()) : null));
-            
             CreateMap<School, OrganizationWebsite>()
                .ForMember(dest => dest.Website, map => map.MapFrom(src => src.schoolURL));
            

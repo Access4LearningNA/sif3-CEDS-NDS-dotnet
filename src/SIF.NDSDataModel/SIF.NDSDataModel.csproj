@@ -135,6 +135,7 @@
     <Compile Include="OrganizationIdentifier.cs" />
     <Compile Include="OrganizationLocation.cs" />
     <Compile Include="OrganizationOperationalStatus.cs" />
+    <Compile Include="OrganizationPersonRole.cs" />
     <Compile Include="OrganizationTelephone.cs" />
     <Compile Include="OrganizationWebsite.cs" />
     <Compile Include="Person.cs" />
@@ -145,8 +146,11 @@
     <Compile Include="PersonDetail.cs" />
     <Compile Include="PersonDisability.cs" />
     <Compile Include="PersonEmailAddress.cs" />
+    <Compile Include="PersonIdentifier.cs" />
     <Compile Include="PersonLanguage.cs" />
     <Compile Include="PersonOtherName.cs" />
+    <Compile Include="PersonProgramParticipation.cs" />
+    <Compile Include="PersonStatus.cs" />
     <Compile Include="PersonTelephone.cs" />
     <Compile Include="ProgramParticipationCte.cs" />
     <Compile Include="ProgramParticipationSpecialEducation.cs" />
@@ -154,6 +158,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PsStudentCohort.cs" />
     <Compile Include="PsStudentSection.cs" />
+    <Compile Include="RefISO6393Language.cs" />
     <Compile Include="RoleAttendance.cs" />
     <Compile Include="RoleAttendanceEvent.cs" />
     <Compile Include="SchoolAttributes.cs" />

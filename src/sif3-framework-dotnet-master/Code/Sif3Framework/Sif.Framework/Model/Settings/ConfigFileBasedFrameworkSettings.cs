@@ -126,11 +126,14 @@ namespace Sif.Framework.Model.Settings
         /// </summary>
         protected ConfigFileBasedFrameworkSettings()
         {
-            string configurationFilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/SifFramework.config");
+            //string configurationFilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/SifFramework.config");
+
+            //string configurationFilePath = System.IO.Path.Combine(System.Web.HttpRuntime.AppDomainAppPath, "SifFramework.config");
+            string configurationFilePath = null;
 
             if (configurationFilePath == null)
             {
-                configurationFilePath = "SifFramework.config";
+                configurationFilePath = "D:\\Projects\\SIF\\src\\sif3-framework-dotnet-master\\Code\\Sif3Framework\\Sif.Framework\\SifFramework.config";
             }
 
             ExeConfigurationFileMap exeConfigurationFileMap = new ExeConfigurationFileMap();

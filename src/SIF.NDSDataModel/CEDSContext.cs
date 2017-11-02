@@ -28,45 +28,42 @@ namespace SIF.NDSDataModel
         public virtual DbSet<PersonTelephone> PersonTelephone { get; set; }
         public virtual DbSet<PersonOtherName> PersonOtherName { get; set; }
         public virtual DbSet<OrganizationWebsite> OrganizationWebsite { get; set; }
-
+        public virtual DbSet<PersonBirthplace> PersonBirthplace { get; set; }
+        public virtual DbSet<PersonDisability> PersonDisability { get; set; }
+        public virtual DbSet<PersonLanguage> PersonLanguage { get; set; }
+        public virtual DbSet<ProgramParticipationSpecialEducation> ProgramParticipationSpecialEducation { get; set; }
+         public virtual DbSet<PersonProgramParticipation> PersonProgramParticipation { get; set; }
+        public virtual DbSet<PersonStatus> PersonStatus { get; set; }
+         public virtual DbSet<RefISO6393Language> RefISO6393Language { get; set; }
+        public virtual DbSet<PersonIdentifier> PersonIdentifier { get; set; }
+        public virtual DbSet<OrganizationPersonRole> OrganizationPersonRole { get; set; }
+        public virtual DbSet<K12StudentAcademicRecord> K12StudentAcademicRecord { get; set; }
+        public virtual DbSet<K12StudentCohort> K12StudentCohort { get; set; }
+        public virtual DbSet<PersonDemographicRace> PersonDemographicRace { get; set; }
         //public virtual DbSet<OrganizationIdentifier> OrganizationIdentifier { get; set; }
 
 
 
         //public virtual DbSet<OrganizationLocation> OrganizationLocation { get; set; }
-        //public virtual DbSet<Person> Person { get; set; }
+
 
         //public virtual DbSet<PersonDegreeOrCertificate> PersonDegreeOrCertificate { get; set; }
-        
 
 
 
 
-        //public virtual DbSet<RefAddressType> RefAddressType { get; set; }
-        //public virtual DbSet<RefCountry> RefCountry { get; set; }
-        //public virtual DbSet<RefEmailType> RefEmailType { get; set; }
-        //public virtual DbSet<RefGradeLevel> RefGradeLevel { get; set; }
-        //public virtual DbSet<RefGradeLevelType> RefGradeLevelType { get; set; }
-        //public virtual DbSet<RefOrganizationIdentifierType> RefOrganizationIdentifierType { get; set; }
-        //public virtual DbSet<RefOrganizationLocationType> RefOrganizationLocationType { get; set; }
-        //public virtual DbSet<RefOrganizationType> RefOrganizationType { get; set; }
-        //public virtual DbSet<RefSchoolLevel> RefSchoolLevel { get; set; }
-        //public virtual DbSet<RefSchoolType> RefSchoolType { get; set; }
-        //public virtual DbSet<RefSex> RefSex { get; set; }
-        //public virtual DbSet<RefState> RefState { get; set; }
-        //public virtual DbSet<RefTelephoneNumberType> RefTelephoneNumberType { get; set; }
-        //public virtual DbSet<SchoolAttributes> SchoolAttributes { get; set; }
-        //public virtual DbSet<SchoolAttributesCleanRecords> SchoolAttributesCleanRecords { get; set; }
-        //public virtual DbSet<SchoolAttributesErrorRecords> SchoolAttributesErrorRecords { get; set; }
-        //public virtual DbSet<K12StudentAcademicRecord> K12StudentAcademicRecord { get; set; }
-        //public virtual DbSet<K12StudentCohort> K12StudentCohort { get; set; }
-        //public virtual DbSet<PersonBirthplace> PersonBirthplace { get; set; }
-        //public virtual DbSet<PersonDisability> PersonDisability { get; set; }
-        //public virtual DbSet<PersonLanguage> PersonLanguage { get; set; }
-        //public virtual DbSet<ProgramParticipationSpecialEducation> ProgramParticipationSpecialEducation { get; set; }
+
+
+
+
+
+
+
+
+
         //public virtual DbSet<ProgramParticipationTitleI> ProgramParticipationTitleI { get; set; }
         //public virtual DbSet<PsStudentCohort> PsStudentCohort { get; set; }
-        //public virtual DbSet<RefISO6393Language> RefISO6393Language { get; set; }
+
         //public virtual DbSet<ELEnrollment> ELEnrollment { get; set; }
         //public virtual DbSet<K12StudentEnrollment> K12StudentEnrollment { get; set; }
         //public virtual DbSet<CourseSectionSchedule> CourseSectionSchedule { get; set; }

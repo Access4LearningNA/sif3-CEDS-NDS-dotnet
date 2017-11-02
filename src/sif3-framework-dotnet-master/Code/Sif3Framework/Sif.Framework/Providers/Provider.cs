@@ -54,14 +54,14 @@ namespace Sif.Framework.Providers
         protected Provider()
         {
 
-           // if (EnvironmentType.DIRECT.Equals(SettingsManager.ProviderSettings.EnvironmentType))
-            //{
+            if (EnvironmentType.DIRECT.Equals(SettingsManager.ProviderSettings.EnvironmentType))
+            {
                 authService = new DirectAuthenticationService(new ApplicationRegisterService(), new EnvironmentService());
-           // }
-           // else if (EnvironmentType.BROKERED.Equals(SettingsManager.ProviderSettings.EnvironmentType))
-           // {
-            //    authService = new BrokeredAuthenticationService(new ApplicationRegisterService(), new EnvironmentService());
-            //}
+            }
+            else if (EnvironmentType.BROKERED.Equals(SettingsManager.ProviderSettings.EnvironmentType))
+            {
+                authService = new BrokeredAuthenticationService(new ApplicationRegisterService(), new EnvironmentService());
+            }
 
         }
 

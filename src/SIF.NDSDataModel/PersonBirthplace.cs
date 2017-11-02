@@ -6,9 +6,11 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.PersonBirthplace")]
+    [Table("PersonBirthplace", Schema = "ODS")]
     public partial class PersonBirthplace
     {
+        [Key]
+        [ForeignKey("Person")]
         public int PersonId { get; set; }
 
         [StringLength(30)]
@@ -17,5 +19,6 @@ namespace SIF.NDSDataModel
         public int? RefStateId { get; set; }
 
         public int? RefCountryId { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

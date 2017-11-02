@@ -6,9 +6,11 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.K12StudentAcademicRecord")]
+    [Table("K12StudentAcademicRecord", Schema = "ODS")]
     public partial class K12StudentAcademicRecord
     {
+        [Key]
+        [ForeignKey("OrganizationPersonRole")]
         public int OrganizationPersonRoleId { get; set; }
 
         public decimal? CreditsAttemptedCumulative { get; set; }
@@ -47,5 +49,6 @@ namespace SIF.NDSDataModel
         public int? RefProfessionalTechnicalCredentialTypeId { get; set; }
 
         public int? RefProgressLevelId { get; set; }
+        public virtual OrganizationPersonRole OrganizationPersonRole { get; set; }
     }
 }

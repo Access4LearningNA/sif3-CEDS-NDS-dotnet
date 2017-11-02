@@ -6,9 +6,11 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.K12StudentCohort")]
+    [Table("K12StudentCohort", Schema = "ODS")]
     public partial class K12StudentCohort
     {
+        [Key]
+        [ForeignKey("OrganizationPersonRole")]
         public int OrganizationPersonRoleId { get; set; }
 
         [StringLength(4)]
@@ -24,5 +26,6 @@ namespace SIF.NDSDataModel
 
         [StringLength(30)]
         public string CohortDescription { get; set; }
+        public virtual OrganizationPersonRole OrganizationPersonRole { get; set; }
     }
 }

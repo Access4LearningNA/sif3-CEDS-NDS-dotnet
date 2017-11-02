@@ -19,7 +19,12 @@ namespace SIF.NDSDataModel
             PersonOtherName = new HashSet<PersonOtherName>();
             PersonTelephone = new HashSet<PersonTelephone>();
             PersonAddress = new HashSet<PersonAddress>();
-
+            PersonDisability = new HashSet<PersonDisability>();
+            PersonIdentifier = new HashSet<PersonIdentifier>();
+            PersonStatus = new HashSet<PersonStatus>();
+            //PersonProgramParticipation = new HashSet<PersonProgramParticipation>();
+            //ProgramParticipationSpecialEducation = new HashSet<ProgramParticipationSpecialEducation>();
+            PersonLanguage = new HashSet<PersonLanguage>();
         }
 
         public int PersonId { get; set; }
@@ -44,5 +49,12 @@ namespace SIF.NDSDataModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PersonTelephone> PersonTelephone { get; set; }
         public virtual ICollection<PersonAddress> PersonAddress { get; set; }
+        public virtual ICollection<PersonDisability> PersonDisability { get; set; }
+        public virtual ICollection<PersonIdentifier> PersonIdentifier { get; set; }
+        public virtual ICollection<PersonStatus> PersonStatus { get; set; }
+        //public virtual ICollection<PersonProgramParticipation> PersonProgramParticipation { get; set; }
+        //public virtual ICollection<ProgramParticipationSpecialEducation> ProgramParticipationSpecialEducation { get; set; }
+        public virtual ICollection<PersonLanguage> PersonLanguage { get; set; }
     }
+    
 }
