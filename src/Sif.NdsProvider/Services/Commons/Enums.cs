@@ -24,6 +24,9 @@ namespace Sif.NdsProvider.Services.Commons
     public static class MyEnumClass
     {
         public const string EconomicDisadvantage = "Economic Disadvantage";
-        public const string StudentRole = "Student";
+        public const string StudentRole = "K12 Student";
+        public const string CalendarCode = "CalendarCode";
+        public const string EntryType = "EntryType";
+
     }
 }

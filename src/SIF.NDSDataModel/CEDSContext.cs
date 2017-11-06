@@ -40,6 +40,13 @@ namespace SIF.NDSDataModel
         public virtual DbSet<K12StudentAcademicRecord> K12StudentAcademicRecord { get; set; }
         public virtual DbSet<K12StudentCohort> K12StudentCohort { get; set; }
         public virtual DbSet<PersonDemographicRace> PersonDemographicRace { get; set; }
+        public virtual DbSet<ProgramParticipationTitleI> ProgramParticipationTitleI { get; set; }
+        public virtual DbSet<ELEnrollment> ELEnrollment { get; set; }
+        public virtual DbSet<K12StudentEnrollment> K12StudentEnrollment { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<OrganizationCalendar> OrganizationCalendar { get; set; }
+        public virtual DbSet<OrganizationCalendarEvent> OrganizationCalendarEvent { get; set; }
+        public virtual DbSet<OrganizationCalendarSession> OrganizationCalendarSession { get; set; }
         //public virtual DbSet<OrganizationIdentifier> OrganizationIdentifier { get; set; }
 
 
@@ -61,11 +68,10 @@ namespace SIF.NDSDataModel
 
 
 
-        //public virtual DbSet<ProgramParticipationTitleI> ProgramParticipationTitleI { get; set; }
+
         //public virtual DbSet<PsStudentCohort> PsStudentCohort { get; set; }
 
-        //public virtual DbSet<ELEnrollment> ELEnrollment { get; set; }
-        //public virtual DbSet<K12StudentEnrollment> K12StudentEnrollment { get; set; }
+
         //public virtual DbSet<CourseSectionSchedule> CourseSectionSchedule { get; set; }
         //public virtual DbSet<CteCourse> CteCourse { get; set; }
         //public virtual DbSet<K12StaffAssignment> K12StaffAssignment { get; set; }
@@ -74,9 +80,7 @@ namespace SIF.NDSDataModel
         //public virtual DbSet<PsStudentSection> PsStudentSection { get; set; }
         //public virtual DbSet<RoleAttendanceEvent> RoleAttendanceEvent { get; set; }
         //public virtual DbSet<K12StudentCourseSectionMark> K12StudentCourseSectionMark { get; set; }
-        //public virtual DbSet<OrganizationCalendar> OrganizationCalendar { get; set; }
-        //public virtual DbSet<OrganizationCalendarEvent> OrganizationCalendarEvent { get; set; }
-        //public virtual DbSet<OrganizationCalendarSession> OrganizationCalendarSession { get; set; }
+
         //public virtual DbSet<RoleAttendance> RoleAttendance { get; set; }
         //public virtual DbSet<CourseSection> CourseSection { get; set; }
         //public virtual DbSet<CourseSectionLocation> CourseSectionLocation { get; set; }

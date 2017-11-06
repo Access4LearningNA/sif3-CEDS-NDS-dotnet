@@ -9,8 +9,11 @@ namespace SIF.NDSDataModel
     [Table("ProgramParticipationTitleI", Schema = "ODS")]
     public partial class ProgramParticipationTitleI
     {
+        [Key]
+        [ForeignKey("PersonProgramParticipation")]
         public int PersonProgramParticipationId { get; set; }
 
         public int? RefTitleIIndicatorId { get; set; }
+        public virtual PersonProgramParticipation PersonProgramParticipation { get; set; }
     }
 }

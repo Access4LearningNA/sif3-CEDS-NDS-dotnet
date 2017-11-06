@@ -18,7 +18,7 @@ namespace SIF.NDSDataModel
             OrganizationOperationalStatus = new HashSet<OrganizationOperationalStatus>();
             OrganizationIdentifier = new HashSet<OrganizationIdentifier>();
             OrganizationWebsite = new HashSet<OrganizationWebsite>();
-
+            OrganizationCalendar = new HashSet<OrganizationCalendar>();
 
             //K12School = new HashSet<K12School>();
 
@@ -45,6 +45,8 @@ namespace SIF.NDSDataModel
         }
         [Key]
         public int OrganizationId { get; set; }
+        [StringLength(36)]
+        public string refId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrganizationDetail> OrganizationDetail { get; set; }
@@ -58,7 +60,8 @@ namespace SIF.NDSDataModel
         public virtual ICollection<OrganizationIdentifier> OrganizationIdentifier { get; set; }
         public virtual ICollection<OrganizationWebsite> OrganizationWebsite { get; set; }
 
-        
+        public virtual ICollection<OrganizationCalendar> OrganizationCalendar { get; set; }
+
         //public virtual ICollection<Person> Person { get; set; }
         //public virtual ICollection<PersonDetail> PersonDetail { get;set;}
         //public virtual ICollection<PersonEmailAddress> PersonEmailAddress { get; set; }

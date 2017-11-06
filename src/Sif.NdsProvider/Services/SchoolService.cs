@@ -24,6 +24,7 @@ namespace Sif.NdsProvider.Services
             var optionsBuilder = new DbContextOptionsBuilder<CEDSContext>();
             optionsBuilder.UseSqlServer("Server=10.10.1.219;Database=CEDS_NDS;User Id=SIFNDSAdmin;password=admin#123;MultipleActiveResultSets=true;App=EntityFramework");
             var org = new Organization();
+            org.refId = Guid.NewGuid().ToString();
             var person = new Person();
             using (var _context = new CEDSContext(optionsBuilder.Options))
             {

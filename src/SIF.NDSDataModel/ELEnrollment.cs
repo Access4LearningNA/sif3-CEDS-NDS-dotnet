@@ -6,9 +6,11 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.ELEnrollment")]
+    [Table("ELEnrollment", Schema = "ODS")]
     public partial class ELEnrollment
     {
+        [Key]
+        [ForeignKey("OrganizationPersonRole")]
         public int OrganizationPersonRoleId { get; set; }
 
         [Column(TypeName = "date")]
@@ -28,5 +30,6 @@ namespace SIF.NDSDataModel
         public int? ELClassSectionId { get; set; }
 
         public int? RefELFederalFundingTypeId { get; set; }
+        public virtual OrganizationPersonRole OrganizationPersonRole { get; set; }
     }
 }

@@ -1,14 +1,14 @@
 namespace SIF.NDSDataModel
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+    
 
-    [Table("ODS.OrganizationCalendarSession")]
+    [Table("OrganizationCalendarSession", Schema = "ODS")]
     public partial class OrganizationCalendarSession
     {
+        [Key]
         public int OrganizationCalendarSessionId { get; set; }
 
         [StringLength(7)]
@@ -51,5 +51,6 @@ namespace SIF.NDSDataModel
         public TimeSpan? SessionStartTime { get; set; }
 
         public TimeSpan? SessionEndTime { get; set; }
+      
     }
 }

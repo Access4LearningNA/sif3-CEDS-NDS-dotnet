@@ -21,8 +21,8 @@ namespace Sif.NdsProvider.Services
             var optionsBuilder = new DbContextOptionsBuilder<CEDSContext>();
             optionsBuilder.UseSqlServer("Server=10.10.1.219;Database=CEDS_NDS;User Id=SIFNDSAdmin;password=admin#123;MultipleActiveResultSets=true;App=EntityFramework");
             var person = new Person();
-            
-           
+
+            person.refId = Guid.NewGuid().ToString();
             using (var _context = new CEDSContext(optionsBuilder.Options))
             {
                 _context.Person.Add(person);
@@ -136,6 +136,12 @@ namespace Sif.NdsProvider.Services
                         stuProgPartSplEducation.RecordStartDateTime = DateTime.Now;
                         _context.ProgramParticipationSpecialEducation.Add(stuProgPartSplEducation);
                     }
+                    if (studentObj.title1 != null && stuPerProgParticipation.PersonProgramParticipationId != 0)
+                    {
+                        var stuTitle = Mapper.Map<ProgramParticipationTitleI>(studentObj);
+                        stuTitle.PersonProgramParticipationId= stuPerProgParticipation.PersonProgramParticipationId;
+                        _context.ProgramParticipationTitleI.Add(stuTitle);
+                    }
                 }
                
                 if(studentObj.economicDisadvantage.ToString().ToLower() =="yes")
@@ -154,6 +160,7 @@ namespace Sif.NdsProvider.Services
                     perStatus.StatusStartDate = DateTime.Now;
                     _context.PersonStatus.Add(perStatus);
                 }
+               
                
                 if (studentObj.demographics.languageList != null)
                 {

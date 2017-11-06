@@ -6,9 +6,15 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.OrganizationCalendar")]
+    [Table("OrganizationCalendar", Schema = "ODS")]
     public partial class OrganizationCalendar
     {
+        public OrganizationCalendar()
+        {
+            OrganizationCalendarSession = new HashSet<OrganizationCalendarSession>();
+            
+        }
+
         public int OrganizationCalendarId { get; set; }
 
         public int OrganizationId { get; set; }
@@ -22,11 +28,7 @@ namespace SIF.NDSDataModel
 
         [StringLength(4)]
         public string CalendarYear { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrganizationCalendarEvent> OrganizationCalendarEvent { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+  
         public virtual ICollection<OrganizationCalendarSession> OrganizationCalendarSession { get; set; }
     }
 }

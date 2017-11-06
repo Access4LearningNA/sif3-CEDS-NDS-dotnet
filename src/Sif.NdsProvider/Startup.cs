@@ -49,7 +49,8 @@ namespace SifNdsProvider
            
             services.AddMvcCore()
                  .AddJsonFormatters().AddXmlSerializerFormatters();
-         var connection = Configuration.GetConnectionString("DefaultConnection");
+
+            var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<CEDSContext>(options => options.UseSqlServer(connection));
             //services.AddMvc(config =>
             //{
@@ -73,7 +74,14 @@ namespace SifNdsProvider
 
             app.UseApplicationInsightsExceptionTelemetry();
 
-            app.UseMvc();
+            //app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action}");
+            });
+            //appLifetime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());
         }
     }
 }
