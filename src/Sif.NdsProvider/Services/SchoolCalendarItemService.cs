@@ -26,6 +26,14 @@ namespace Sif.NdsProvider.Services
             optionsBuilder.UseSqlServer("Server=10.10.1.219;Database=CEDS_NDS;User Id=SIFNDSAdmin;password=admin#123;MultipleActiveResultSets=true;App=EntityFramework");
             using (var _context = new CEDSContext(optionsBuilder.Options))
             {
+                if(schoolCalendarItemObj !=null)
+                {
+                    var organizationId = _context.Organization.Where(x => x.refId == schoolCalendarItemObj.schoolRefId).Select(y => y.OrganizationId).FirstOrDefault(); 
+                    var calEvent = Mapper.Map<OrganizationCalendarEvent>(schoolCalendarItemObj);
+                    calEvent.OrganizationCalendarId = _context.OrganizationCalendar.Where(x => x.OrganizationId == organizationId).Select(y => y.OrganizationCalendarId).FirstOrDefault();
+                    _context.OrganizationCalendarEvent.Add(calEvent);
+                }
+                _context.SaveChanges();
             }
                 return schoolCalendarItemObj;
         }
@@ -60,9 +68,6 @@ namespace Sif.NdsProvider.Services
             throw new NotImplementedException();
         }
 
-        SchoolCalendarItem IObjectService<SchoolCalendarItem, List<SchoolCalendarItem>, string>.Create(SchoolCalendarItem obj, bool? mustUseAdvisory, string zone, string context)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

@@ -18,7 +18,7 @@ namespace Sif.NdsProvider.Controllers
 
         #region POSTMethod
         [Microsoft.AspNetCore.Mvc.HttpPost]
-        [Microsoft.AspNetCore.Mvc.Route("SchoolCalendar")]
+        [Microsoft.AspNetCore.Mvc.Route("SchoolCalendarItem")]
         public override IHttpActionResult Post([Microsoft.AspNetCore.Mvc.FromBody]SchoolCalendarItem obj, [MatrixParameter] string[] zone = null, [MatrixParameter] string[] context = null)
         {
 

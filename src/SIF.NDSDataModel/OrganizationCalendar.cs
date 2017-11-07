@@ -12,7 +12,8 @@ namespace SIF.NDSDataModel
         public OrganizationCalendar()
         {
             OrganizationCalendarSession = new HashSet<OrganizationCalendarSession>();
-            
+            OrganizationCalendarEvent = new HashSet<OrganizationCalendarEvent>();
+
         }
 
         public int OrganizationCalendarId { get; set; }
@@ -30,5 +31,6 @@ namespace SIF.NDSDataModel
         public string CalendarYear { get; set; }
   
         public virtual ICollection<OrganizationCalendarSession> OrganizationCalendarSession { get; set; }
+        public virtual ICollection<OrganizationCalendarEvent> OrganizationCalendarEvent { get; set; }
     }
 }

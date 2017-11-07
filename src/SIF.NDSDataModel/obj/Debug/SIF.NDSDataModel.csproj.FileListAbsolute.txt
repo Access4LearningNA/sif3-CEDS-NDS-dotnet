@@ -133,3 +133,4 @@ D:\Projects\SIF\src\SIF.NDSDataModel\bin\Debug\System.Runtime.CompilerServices.U
 D:\Projects\SIF\src\SIF.NDSDataModel\obj\Debug\SIF.NDSDataModel.csproj.CoreCompileInputs.cache
 D:\Projects\SIF\src\SIF.NDSDataModel\obj\Debug\SIF.NDSDataModel.dll
 D:\Projects\SIF\src\SIF.NDSDataModel\obj\Debug\SIF.NDSDataModel.pdb
+D:\Projects\SIF\src\SIF.NDSDataModel\obj\Debug\SIF.NDSDataModel.csprojResolveAssemblyReference.cache

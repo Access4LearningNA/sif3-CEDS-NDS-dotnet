@@ -34,9 +34,3 @@ D:\Projects\SIF\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.Asse
 D:\Projects\SIF\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.AssemblyInfo.cs
 D:\Projects\SIF\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.dll
 D:\Projects\SIF\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.pdb
-D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Remotion.Linq.EagerFetching.dll
-D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Antlr3.Runtime.dll
-D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Iesi.Collections.dll
-D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Remotion.Linq.EagerFetching.xml
-D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Antlr3.Runtime.xml
-D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Iesi.Collections.xml
