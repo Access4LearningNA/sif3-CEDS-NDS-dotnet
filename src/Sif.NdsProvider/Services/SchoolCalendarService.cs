@@ -19,11 +19,9 @@ namespace Sif.NdsProvider.Services
     {
         public SchoolCalendar Create(SchoolCalendar schoolCalendarObj, bool? mustUseAdvisory = null, string zone = null, string context = null)
         {
-            string refId = Guid.NewGuid().ToString();
-            schoolCalendarObj.refId = refId;
-            var optionsBuilder = new DbContextOptionsBuilder<CEDSContext>();
-            optionsBuilder.UseSqlServer("Server=10.10.1.219;Database=CEDS_NDS;User Id=SIFNDSAdmin;password=admin#123;MultipleActiveResultSets=true;App=EntityFramework");
-            using (var _context = new CEDSContext(optionsBuilder.Options))
+           
+           
+            using (var _context = new CEDSContext(CommonMethods.GetConncetionString()))
             {
                 if(schoolCalendarObj !=null)
                 {
@@ -32,6 +30,7 @@ namespace Sif.NdsProvider.Services
                     orgCal.CalendarDescription = schoolCalendarObj.description;
                     orgCal.CalendarYear = schoolCalendarObj.schoolYear;
                     orgCal.CalendarCode = schoolCalendarObj.localId.idType.codesetName.ToString() == MyEnumClass.CalendarCode ? schoolCalendarObj.localId.idValue.ToString() : null;
+                    orgCal.refId = schoolCalendarObj.refId;
                     _context.OrganizationCalendar.Add(orgCal);
                     var orgCalSession = Mapper.Map<OrganizationCalendarSession>(schoolCalendarObj);
                     orgCalSession.OrganizationCalendarId = orgCal.OrganizationCalendarId;

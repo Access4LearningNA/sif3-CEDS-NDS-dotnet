@@ -5,15 +5,27 @@ using System.Threading.Tasks;
 
 namespace Sif.NdsProvider.Services.Commons
 {
+    public enum SchoolExternalId
+    {
+
+        externalIdOrganizationIdentificationSystemId = 77,
+        externalIdOrganizationIdentifierTypeId = 18
+    }
+    public enum SchoolLocalId
+    {
+        localIdOrganizationIdentificationSystemId = 36,
+        localIdOrganizationIdentifierTypeId = 13
+    }
+
     public enum StudentExternalId
     {
-         externalIdPersonIdentificationSystemId = 4,
-        externalIdPersonIdentifierId = 5
+         externalIdPersonIdentificationSystemId = 8,
+        
     }
     public  enum StudentLocalId
     {
-         localIdPersonIdentificationSystemId = 4,
-         localIdPersonIdentifierId = 5
+         localIdPersonIdentificationSystemId = 2,
+        
     }
     public enum YesNoUnknown
     {
@@ -27,6 +39,8 @@ namespace Sif.NdsProvider.Services.Commons
         public const string StudentRole = "K12 Student";
         public const string CalendarCode = "CalendarCode";
         public const string EntryType = "EntryType";
+        public const string PrimaryDisabilityType = "PrimaryDisabilityType";
+        public const string LEPStatus = "LEPStatus";
 
     }
 }

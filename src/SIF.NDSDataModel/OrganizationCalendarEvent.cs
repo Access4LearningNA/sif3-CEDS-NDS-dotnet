@@ -21,5 +21,7 @@ namespace SIF.NDSDataModel
         public DateTime EventDate { get; set; }
 
         public int? RefCalendarEventType { get; set; }
+        [StringLength(36)]
+        public string refId { get; set; }
     }
 }

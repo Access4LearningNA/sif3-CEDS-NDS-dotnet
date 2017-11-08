@@ -15,9 +15,9 @@ namespace Sif.NdsProvider.Mappers
         public StudentSchoolAssociationMapper()
         {
            
-            CreateMap<StudentSchoolAssociation, ELEnrollment>()
+            CreateMap<StudentProgramAssociation, ELEnrollment>()
             .ForMember(dest => dest.EnrollmentDate, map => map.MapFrom(s => s.entryDate));
-            CreateMap<StudentSchoolAssociation, K12StudentEnrollment>()
+            CreateMap<StudentProgramAssociation, K12StudentEnrollment>()
            .ForMember(dest => dest.RefEntryType, map => map.MapFrom(s => s.entryType.code))
            .ForMember(dest => dest.RefExitOrWithdrawalStatusId, map => map.MapFrom(s => s.exitStatus.code))
            .ForMember(dest => dest.RefExitOrWithdrawalTypeId, map => map.MapFrom(s => s.exitType.code))

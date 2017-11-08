@@ -17,10 +17,7 @@ namespace Sif.NdsProvider.Mappers
         }
         public OrganizationMapper()
         {
-            var localIdOrganizationIdentificationSystemId = 36;
-            var localIdOrganizationIdentifierTypeId = 13;
-            var externalIdOrganizationIdentificationSystemId = 77;
-            var externalIdOrganizationIdentifierTypeId = 18;
+           
             CreateMap<School, OrganizationDetail>()
                .ForMember(dest => dest.Name, map => map.MapFrom(src => src.schoolName))
                .ForMember(dest => dest.ShortName, map => map.MapFrom(src => src.schoolName));
@@ -33,14 +30,6 @@ namespace Sif.NdsProvider.Mappers
                .ForMember(dest => dest.RefEmailTypeId, map => map.MapFrom(src => src.emailList.Select(x => x.emailType.code.ToString() != null ? CommonMethods.GetCodesetCode("refemailtype", "RefEmailTypeId", x.emailType.code.ToString()) : null).FirstOrDefault()));
             CreateMap<School, OrganizationOperationalStatus>()
                .ForMember(dest => dest.RefOperationalStatusId, map => map.MapFrom(src => src.operationalStatus.code.ToString() != null ? CommonMethods.GetCodesetCode("refoperationalstatus", "RefOperationalStatusId", src.operationalStatus.code.ToString()) : null));
-            CreateMap<School, OrganizationIdentifier>()
-                .ForMember(dest => dest.Identifier, map => map.MapFrom(src => src.externalIdList.Select(x => x.idType.code.ToString() == "NCES Identification system" ? src.externalIdList.Select(y => y.idValue) : null).FirstOrDefault()))
-                .ForMember(dest => dest.RefOrganizationIdentificationSystemId, map => map.MapFrom(src => src.externalIdList.Select(x => x.idValue) != null ? externalIdOrganizationIdentificationSystemId : 0))
-                .ForMember(dest => dest.RefOrganizationIdentifierTypeId, map => map.MapFrom(src => src.externalIdList.Select(x => x.idValue) != null ? externalIdOrganizationIdentifierTypeId : 0));
-             CreateMap<School, OrganizationIdentifier>()
-                .ForMember(dest=>dest.Identifier,map=>map.MapFrom(src=>src.localId.idType.code.ToString()== "State assigned number" ? src.localId.idValue:null))
-                .ForMember(dest => dest.RefOrganizationIdentificationSystemId, map => map.MapFrom(src => src.localId.idValue.ToString() != null ? localIdOrganizationIdentificationSystemId : 0))
-                .ForMember(dest => dest.RefOrganizationIdentifierTypeId, map => map.MapFrom(src => src.localId.idValue.ToString() != null ? localIdOrganizationIdentifierTypeId : 0));
             CreateMap<School, K12School>()
                .ForMember(dest => dest.RefSchoolTypeId, map => map.MapFrom(src => src.schoolType.code.ToString() != null ? CommonMethods.GetCodesetCode("refschooltype", "RefSchoolTypeId", src.schoolType.code.ToString()) : null))
                 .ForMember(dest => dest.CharterSchoolIndicator, map => map.MapFrom(src => src.schoolSector.ToString() == "School" || src.schoolSector.ToString() == "CollegeUniversity"|| src.schoolSector.ToString() == "NA" ? 1:0))
@@ -77,14 +66,9 @@ namespace Sif.NdsProvider.Mappers
             CreateMap<School, PersonEmailAddress>()
              .ForMember(dest => dest.EmailAddress, map => map.MapFrom(src => src.schoolContactList.Select(x => x.emailList.Select(y => y.emailAddress)).FirstOrDefault()))
              .ForMember(dest => dest.RefEmailTypeId, map => map.MapFrom(src => src.schoolContactList.Select(x => x.emailList.Select(y => y.emailType.code.ToString() != null ? CommonMethods.GetCodesetCode("refemailtype", "RefEmailTypeId", y.emailType.code.ToString()) : null))));
-            
-
             //Mapper.Initialize(cfg => cfg.CreateMap<SchoolAttributes, OrganizationLocation>()
             //.ForMember(dest=>dest.RefOrganizationLocationTypeId,map=>map.MapFrom(src=>src.schoolContactAddressRole.ToString() !=null ? CommonMethods.GetCodesetCode("reforganizationlocationtype", "RefOrganizationLocationTypeId", src.schoolContactAddressRole.ToString()) : null))
             //);
-
-
-
 
         }
 

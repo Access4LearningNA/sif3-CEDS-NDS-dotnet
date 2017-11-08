@@ -9,7 +9,7 @@ using Sif.NdsProvider.Model;
 namespace Sif.NdsProvider.Controllers
 {
     [Microsoft.AspNetCore.Mvc.Route("api/StudentSchoolAssociations")]
-    public class StudentSchoolAssociationController : BasicProvider<StudentSchoolAssociation>
+    public class StudentSchoolAssociationController : BasicProvider<StudentProgramAssociation>
     {
         #region Constructor
         public StudentSchoolAssociationController()
@@ -21,7 +21,7 @@ namespace Sif.NdsProvider.Controllers
         #region POSTMethod
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Mvc.Route("StudentSchoolAssociation")]
-        public override IHttpActionResult Post([Microsoft.AspNetCore.Mvc.FromBody]StudentSchoolAssociation obj, [MatrixParameter] string[] zone = null, [MatrixParameter] string[] context = null)
+        public override IHttpActionResult Post([Microsoft.AspNetCore.Mvc.FromBody]StudentProgramAssociation obj, [MatrixParameter] string[] zone = null, [MatrixParameter] string[] context = null)
         {
 
             return base.Post(obj);

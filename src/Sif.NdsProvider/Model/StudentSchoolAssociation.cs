@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace Sif.NdsProvider.Model
 {
-    public class StudentSchoolAssociation: studentSchoolAssociationType,IDataModel
+    public class StudentProgramAssociation: studentSchoolAssociationType,IDataModel
     {
         public string RefId
         {

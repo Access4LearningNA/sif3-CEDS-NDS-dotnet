@@ -32,6 +32,7 @@ namespace SifNdsProvider
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+            
         }
 
         public IConfigurationRoot Configuration { get; }
@@ -46,12 +47,13 @@ namespace SifNdsProvider
             //   services.AddMvc()
             //.AddMvcOptions(opt => opt.InputFormatters.Add(new XmlDataContractSerializerInputFormatter()));
             services.AddMvc();
-           
+            services.AddOptions();
             services.AddMvcCore()
                  .AddJsonFormatters().AddXmlSerializerFormatters();
 
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<CEDSContext>(options => options.UseSqlServer(connection));
+            services.AddSingleton<IConfiguration>(Configuration);
             //services.AddMvc(config =>
             //{
             //    // Add XML Content Negotiation

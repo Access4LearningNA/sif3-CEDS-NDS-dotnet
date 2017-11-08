@@ -29,7 +29,10 @@ namespace SIF.NDSDataModel
 
         [StringLength(4)]
         public string CalendarYear { get; set; }
-  
+
+        [StringLength(36)]
+        public string refId { get; set; }
+
         public virtual ICollection<OrganizationCalendarSession> OrganizationCalendarSession { get; set; }
         public virtual ICollection<OrganizationCalendarEvent> OrganizationCalendarEvent { get; set; }
     }

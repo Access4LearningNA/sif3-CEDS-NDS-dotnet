@@ -8,7 +8,7 @@ using Sif.Specification.DataModel.Us;
 using SIF.NDSDataModel;
 using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
+
 
 namespace Sif.NdsProvider.Services
 {
@@ -16,14 +16,12 @@ namespace Sif.NdsProvider.Services
     {
         public Student Create(Student studentObj, bool? mustUseAdvisory = null, string zone = null, string context = null)
         {
-            string refId = Guid.NewGuid().ToString();
-            studentObj.refId = refId;
-            var optionsBuilder = new DbContextOptionsBuilder<CEDSContext>();
-            optionsBuilder.UseSqlServer("Server=10.10.1.219;Database=CEDS_NDS;User Id=SIFNDSAdmin;password=admin#123;MultipleActiveResultSets=true;App=EntityFramework");
-            var person = new Person();
+            
+            
+            var person = new SIF.NDSDataModel.Person();
 
-            person.refId = Guid.NewGuid().ToString();
-            using (var _context = new CEDSContext(optionsBuilder.Options))
+            person.refId = studentObj.refId;
+            using (var _context = new CEDSContext(CommonMethods.GetConncetionString()))
             {
                 _context.Person.Add(person);
                 if (studentObj.name.nameOfRecord != null && studentObj.demographics != null)
@@ -34,13 +32,13 @@ namespace Sif.NdsProvider.Services
                     stuDetails.RecordStartDateTime = DateTime.Now;
                     _context.PersonDetail.Add(stuDetails);
                 }
-                if (studentObj.demographics !=null)
+                if (studentObj.demographics.countryOfBirth != null)
                 {
                     var stuBirthPlace = Mapper.Map<PersonBirthplace>(studentObj);
                     stuBirthPlace.PersonId = person.PersonId;
                     _context.PersonBirthplace.Add(stuBirthPlace);
                 }
-                if(studentObj.demographics.raceList !=null)
+                if (studentObj.demographics.raceList != null)
                 {
                     List<PersonDemographicRace> personRace = new List<PersonDemographicRace>();
                     foreach (var races in studentObj.demographics.raceList)
@@ -51,13 +49,13 @@ namespace Sif.NdsProvider.Services
                         race.PersonId = person.PersonId;
                         personRace.Add(race);
                     }
-                    if(personRace.Count>0)
+                    if (personRace.Count > 0)
                     {
                         _context.PersonDemographicRace.AddRange(personRace);
                     }
-                    
+
                 }
-               if(studentObj.stateProvinceId !=null)
+                if (studentObj.stateProvinceId != null)
                 {
                     var stuAddress = Mapper.Map<PersonAddress>(studentObj);
                     stuAddress.PersonId = person.PersonId;
@@ -65,10 +63,13 @@ namespace Sif.NdsProvider.Services
                 }
                 if (studentObj.disability != null)
                 {
-                    var stuDisability = Mapper.Map<PersonDisability>(studentObj);
-                    stuDisability.PersonId = person.PersonId;
-                    stuDisability.RecordStartDateTime = DateTime.Now;
-                    _context.PersonDisability.Add(stuDisability);
+                    if (studentObj.disability.primaryDisability.codesetName == MyEnumClass.PrimaryDisabilityType)
+                    {
+                        var stuDisability = Mapper.Map<PersonDisability>(studentObj);
+                        stuDisability.PersonId = person.PersonId;
+                        stuDisability.RecordStartDateTime = DateTime.Now;
+                        _context.PersonDisability.Add(stuDisability);
+                    }
                 }
                 if (studentObj.emailList != null)
                 {
@@ -95,7 +96,7 @@ namespace Sif.NdsProvider.Services
                     stuPhoneDtls.PersonId = person.PersonId;
                     _context.PersonTelephone.Add(stuPhoneDtls);
                 }
-                if (studentObj.mostRecentEnrollment != null )
+                if (studentObj.mostRecentEnrollment != null)
                 {
                     var orgPersonRole = new OrganizationPersonRole();
                     orgPersonRole.PersonId = person.PersonId;
@@ -103,13 +104,13 @@ namespace Sif.NdsProvider.Services
                     orgPersonRole.OrganizationId = Convert.ToInt32(CommonMethods.GetCodesetCode("Organization", "OrganizationId", studentObj.mostRecentEnrollment.schoolLocalId.ToString()));
                     _context.OrganizationPersonRole.Add(orgPersonRole);
                     var stuPerProgParticipation = new PersonProgramParticipation();
-                    if(studentObj.projectedGraduationYear !=null)
+                    if (studentObj.projectedGraduationYear != null)
                     {
                         var stuK12AcedamicRecord = Mapper.Map<K12StudentAcademicRecord>(studentObj);
                         stuK12AcedamicRecord.OrganizationPersonRoleId = orgPersonRole.OrganizationPersonRoleId;
                         _context.K12StudentAcademicRecord.Add(stuK12AcedamicRecord);
                     }
-                    if(studentObj.onTimeGraduationYear !=null)
+                    if (studentObj.onTimeGraduationYear != null)
                     {
                         var stuK12StudentCohort = Mapper.Map<K12StudentCohort>(studentObj);
                         stuK12StudentCohort.OrganizationPersonRoleId = orgPersonRole.OrganizationPersonRoleId;
@@ -122,7 +123,7 @@ namespace Sif.NdsProvider.Services
                         stuPerProgParticipation.RecordStartDateTime = DateTime.Now;
                         _context.PersonProgramParticipation.Add(stuPerProgParticipation);
                     }
-                    if(studentObj.neglectedDelinquent.ToString().ToLower()=="yes")
+                    if (studentObj.neglectedDelinquent.ToString().ToLower() == "yes")
                     {
                         stuPerProgParticipation.RefParticipationTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefParticipationType", "RefParticipationTypeId", "Section504"));
                         stuPerProgParticipation.RecordStartDateTime = DateTime.Now;
@@ -139,29 +140,29 @@ namespace Sif.NdsProvider.Services
                     if (studentObj.title1 != null && stuPerProgParticipation.PersonProgramParticipationId != 0)
                     {
                         var stuTitle = Mapper.Map<ProgramParticipationTitleI>(studentObj);
-                        stuTitle.PersonProgramParticipationId= stuPerProgParticipation.PersonProgramParticipationId;
+                        stuTitle.PersonProgramParticipationId = stuPerProgParticipation.PersonProgramParticipationId;
                         _context.ProgramParticipationTitleI.Add(stuTitle);
                     }
                 }
-               
-                if(studentObj.economicDisadvantage.ToString().ToLower() =="yes")
+
+                if (studentObj.economicDisadvantage.ToString().ToLower() == "yes")
                 {
                     var perStatus = new PersonStatus();
                     perStatus.PersonId = person.PersonId;
                     perStatus.RefPersonStatusTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefPersonstatustype", "RefPersonStatusTypeId", MyEnumClass.EconomicDisadvantage));
-                    perStatus.StatusStartDate = DateTime.Now;
-                   _context.PersonStatus.Add(perStatus);
-                }
-                if(studentObj.ell.ToString().ToLower()=="yes")
-                {
-                    var perStatus = new PersonStatus();
-                    perStatus.PersonId = person.PersonId;
-                    perStatus.RefPersonStatusTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefPersonstatustype", "RefPersonStatusTypeId", MyEnumClass.EconomicDisadvantage));
+                    perStatus.StatusValue =Convert.ToBoolean(YesNoUnknown.Yes);
                     perStatus.StatusStartDate = DateTime.Now;
                     _context.PersonStatus.Add(perStatus);
                 }
-               
-               
+                if (studentObj.ell.ToString().ToLower() == "yes")
+                {
+                    var perStatus = new PersonStatus();
+                    perStatus.PersonId = person.PersonId;
+                    perStatus.RefPersonStatusTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefPersonstatustype", "RefPersonStatusTypeId", MyEnumClass.EconomicDisadvantage));
+                    perStatus.StatusValue = Convert.ToBoolean(YesNoUnknown.Yes);
+                    perStatus.StatusStartDate = DateTime.Now;
+                    _context.PersonStatus.Add(perStatus);
+                }
                 if (studentObj.demographics.languageList != null)
                 {
                     var stuISO6393Language = Mapper.Map<RefISO6393Language>(studentObj);
@@ -169,35 +170,44 @@ namespace Sif.NdsProvider.Services
                 }
                 if (studentObj.electronicIdList != null || studentObj.externalId != null || studentObj.localId != null)
                 {
-                    var stuIdentifier = new PersonIdentifier();
-                    if(studentObj.localId != null)
+
+                    List<PersonIdentifier> perIdentifier = new List<PersonIdentifier>();
+                    if (studentObj.localId != null)
                     {
-                        stuIdentifier.Identifier = studentObj.localId.idValue.ToString();
-                        stuIdentifier.PersonId = person.PersonId;
-                        //stuIdentifier.RefPersonIdentificationSystemId = "";
+                        var stuLocalIdIdentifier = new PersonIdentifier();
+                        stuLocalIdIdentifier.Identifier = studentObj.localId.idValue.ToString();
+                        stuLocalIdIdentifier.PersonId = person.PersonId;
+                        stuLocalIdIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(StudentLocalId.localIdPersonIdentificationSystemId);
                         //stuIdentifier.RefPersonalInformationVerificationId = "";
-                        _context.PersonIdentifier.Add(stuIdentifier);
+                        perIdentifier.Add(stuLocalIdIdentifier);
                     }
-                    if(studentObj.externalId !=null)
+                    if (studentObj.externalId != null)
                     {
-                        stuIdentifier.Identifier = studentObj.externalId.idValue.ToString();
-                        stuIdentifier.PersonId = person.PersonId;
-                        //stuIdentifier.RefPersonIdentificationSystemId = "";
-                       // stuIdentifier.RefPersonalInformationVerificationId = "";
+                        var stuExternalIdIdentifier = new PersonIdentifier();
+                        stuExternalIdIdentifier.Identifier = studentObj.externalId.idValue.ToString();
+                        stuExternalIdIdentifier.PersonId = person.PersonId;
+                        stuExternalIdIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(StudentExternalId.externalIdPersonIdentificationSystemId);
+                        // stuIdentifier.RefPersonalInformationVerificationId = "";
+                        perIdentifier.Add(stuExternalIdIdentifier);
                     }
-                    if(studentObj.electronicIdList !=null)
+                    if (studentObj.electronicIdList != null)
                     {
-                        foreach(var electronicId in studentObj.electronicIdList)
+                        var stuElectronicIdIdentifier = new PersonIdentifier();
+                        foreach (var electronicId in studentObj.electronicIdList)
                         {
-                            stuIdentifier.Identifier = electronicId.idValue.ToString();
-                            stuIdentifier.PersonId = person.PersonId;
+
+                            stuElectronicIdIdentifier.Identifier = electronicId.idValue.ToString();
+                            stuElectronicIdIdentifier.PersonId = person.PersonId;
                             //stuIdentifier.RefPersonIdentificationSystemId = "";
-                           // stuIdentifier.RefPersonalInformationVerificationId = "";
+                            // stuIdentifier.RefPersonalInformationVerificationId = "";
                         }
-                        _context.PersonIdentifier.AddRange(stuIdentifier);
-                        
+                        perIdentifier.Add(stuElectronicIdIdentifier);
+
+
                     }
-                    
+
+                    _context.PersonIdentifier.AddRange(perIdentifier);
+
                 }
                 _context.SaveChanges();
 

@@ -4,10 +4,13 @@ using Sif.Framework.Model.Query;
 using Sif.Framework.Service.Providers;
 using Sif.Framework.Service.Serialisation;
 using Sif.NdsProvider.Model;
+using Sif.NdsProvider.Services.Commons;
 using Sif.Specification.DataModel.Us;
 using SIF.NDSDataModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Person= SIF.NDSDataModel.Person;
 
 namespace Sif.NdsProvider.Services
 {
@@ -18,15 +21,10 @@ namespace Sif.NdsProvider.Services
        
         public School Create(School schoolObj, bool? mustUseAdvisory = null, string zone = null, string context = null)
         {
-
-            string refId = Guid.NewGuid().ToString();
-            schoolObj.refId = refId;
-            var optionsBuilder = new DbContextOptionsBuilder<CEDSContext>();
-            optionsBuilder.UseSqlServer("Server=10.10.1.219;Database=CEDS_NDS;User Id=SIFNDSAdmin;password=admin#123;MultipleActiveResultSets=true;App=EntityFramework");
             var org = new Organization();
-            org.refId = Guid.NewGuid().ToString();
+            org.refId = schoolObj.refId;
             var person = new Person();
-            using (var _context = new CEDSContext(optionsBuilder.Options))
+            using (var _context = new CEDSContext(CommonMethods.GetConncetionString()))
             {
                 _context.Organization.Add(org);
                 var orgDetail = Mapper.Map<OrganizationDetail>(schoolObj);
@@ -51,25 +49,47 @@ namespace Sif.NdsProvider.Services
                     orgOperationalStatus.OrganizationId = org.OrganizationId;
                     _context.OrganizationOperationalStatus.Add(orgOperationalStatus);
                 }
+                List<OrganizationIdentifier> orgIdentifier = new List<OrganizationIdentifier>();
+                if (schoolObj.externalIdList != null)
+                {
+                    var orgExternalIdIdentifier = new OrganizationIdentifier();
+                    orgExternalIdIdentifier.Identifier = schoolObj.externalIdList.Select(x => x.idType.code.ToString() == "NCES Identification system" ? x.idValue.ToString() : null).FirstOrDefault();
+                    orgExternalIdIdentifier.RefOrganizationIdentificationSystemId= schoolObj.externalIdList.Select(x => x.idValue != null ?Convert.ToInt32(SchoolExternalId.externalIdOrganizationIdentificationSystemId) : 0).FirstOrDefault();
+                    orgExternalIdIdentifier.RefOrganizationIdentifierTypeId= schoolObj.externalIdList.Select(x => x.idValue != null ? Convert.ToInt32(SchoolExternalId.externalIdOrganizationIdentifierTypeId) : 0).FirstOrDefault();
+                    orgExternalIdIdentifier.OrganizationId = org.OrganizationId;
+                    orgIdentifier.Add(orgExternalIdIdentifier);
+                }
                 if (schoolObj.localId != null)
                 {
-                    var orgIdentifier = Mapper.Map<OrganizationIdentifier>(schoolObj);
-                    orgIdentifier.OrganizationId = org.OrganizationId;
-                    _context.OrganizationIdentifier.Add(orgIdentifier);
+                    var orgLocalIdIdentifier = new OrganizationIdentifier();
+                    orgLocalIdIdentifier.Identifier = (schoolObj.localId.idType.code.ToString() == "State assigned number" ? schoolObj.localId.idValue.ToString() : null);
+                    orgLocalIdIdentifier.RefOrganizationIdentificationSystemId = (schoolObj.localId.idValue.ToString() != null ? Convert.ToInt32(SchoolLocalId.localIdOrganizationIdentificationSystemId) : 0);
+                    orgLocalIdIdentifier.RefOrganizationIdentifierTypeId = (schoolObj.localId.idValue.ToString() != null ? Convert.ToInt32(SchoolLocalId.localIdOrganizationIdentifierTypeId) : 0);
+                    orgLocalIdIdentifier.OrganizationId = org.OrganizationId;
+                    orgIdentifier.Add(orgLocalIdIdentifier);
                 }
-              
+                _context.OrganizationIdentifier.AddRange(orgIdentifier);
+
                 if (schoolObj.schoolContactList != null)
                 {
                     _context.Person.Add(person);
+                   
                     var perDetails = Mapper.Map<PersonDetail>(schoolObj);
-
                     perDetails.PersonId = person.PersonId;
                     perDetails.RecordStartDateTime = DateTime.Now;
                     _context.PersonDetail.Add(perDetails);
                     var perAddr = Mapper.Map<PersonAddress>(schoolObj);
                     perAddr.PersonId = person.PersonId;
                     _context.PersonAddress.Add(perAddr);
-                    //var perOtherName=Mapper.Map<PersonOtherName>
+                    var perTelephone = Mapper.Map<PersonTelephone>(schoolObj);
+                    perTelephone.PersonId = person.PersonId;
+                    _context.PersonTelephone.Add(perTelephone);
+                    var perEmail = Mapper.Map<PersonEmailAddress>(schoolObj);
+                    perEmail.PersonId = person.PersonId;
+                    _context.PersonEmailAddress.Add(perEmail);
+                    var perOtherName = Mapper.Map<PersonOtherName>(schoolObj);
+                    perOtherName.PersonId = person.PersonId;
+                    _context.PersonOtherName.Add(perOtherName);
                 }
                 if (schoolObj.schoolFocusList != null && schoolObj.schoolSector != null)
                 {

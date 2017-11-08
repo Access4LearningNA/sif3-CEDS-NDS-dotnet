@@ -51,6 +51,12 @@ namespace Sif.NdsProvider.Services.Commons
             }
                 
         }
+        public static DbContextOptions<CEDSContext> GetConncetionString()
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<CEDSContext>();
+            optionsBuilder.UseSqlServer("Server=10.10.1.219;Database=CEDS_NDS;User Id=SIFNDSAdmin;password=admin#123;MultipleActiveResultSets=true;App=EntityFramework");
+            return optionsBuilder.Options;
+        }
        
     }
 }
