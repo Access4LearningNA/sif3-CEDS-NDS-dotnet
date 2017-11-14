@@ -1,9 +1,11 @@
 ﻿#region Namespace
 using Sif.Framework.Providers;
 using Sif.Framework.WebApi.ModelBinders;
-using System.Web.Http;
+
 using Sif.NdsProvider.Services;
 using Sif.NdsProvider.Model;
+
+using Microsoft.AspNetCore.Mvc;
 #endregion
 
 namespace Sif.NdsProvider.Controllers
@@ -21,9 +23,9 @@ namespace Sif.NdsProvider.Controllers
         #region POSTMethod
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Mvc.Route("StudentSchoolAssociation")]
-        public override IHttpActionResult Post([Microsoft.AspNetCore.Mvc.FromBody]StudentProgramAssociation obj, [MatrixParameter] string[] zone = null, [MatrixParameter] string[] context = null)
+        public override System.Web.Http.IHttpActionResult Post([FromBody]StudentProgramAssociation obj, [MatrixParameter] string[] zone = null, [MatrixParameter] string[] context = null)
         {
-
+            
             return base.Post(obj);
         }
 

@@ -21,9 +21,9 @@ namespace Sif.NdsProvider.Mappers
             .ForMember(dest => dest.ClassPeriod, map => map.MapFrom(src => src.timeTablePeriod))
             );
             Mapper.Initialize(cfg => cfg.CreateMap<StudentAttendanceEvent, RoleAttendanceEvent>()
-            .ForMember(dest => dest.RefAbsentAttendanceCategoryId, map => map.MapFrom(src => src.absentAttendanceCategory != null ? (src.absentAttendanceCategory.code != null ? (CommonMethods.GetCodesetCode("RefAbsentAttendanceCategory", "RefAbsentAttendanceCategoryId", src.absentAttendanceCategory.code)) : null) : null))
-            .ForMember(dest => dest.RefAttendanceEventTypeId, map => map.MapFrom(src => CommonMethods.GetCodesetCode("RefAttendanceEventType", "RefAttendanceEventTypeId", src.attendanceEventType.ToString())))
-            .ForMember(dest => dest.RefAttendanceStatusId, map => map.MapFrom(src => src.attendanceStatus != null ? (src.attendanceStatus.code != null ? (CommonMethods.GetCodesetCode("RefAttendanceStatus", "RefAttendanceStatusId", src.attendanceStatus.code)) : null) : null))
+            .ForMember(dest => dest.RefAbsentAttendanceCategoryId, map => map.MapFrom(src => src.absentAttendanceCategory != null ? (src.absentAttendanceCategory.code != null ? (CommonMethods.GetCodesetCode("RefAbsentAttendanceCategory", "RefAbsentAttendanceCategoryId", "Code", src.absentAttendanceCategory.code)) : null) : null))
+            .ForMember(dest => dest.RefAttendanceEventTypeId, map => map.MapFrom(src => CommonMethods.GetCodesetCode("RefAttendanceEventType", "RefAttendanceEventTypeId", "Code", src.attendanceEventType.ToString())))
+            .ForMember(dest => dest.RefAttendanceStatusId, map => map.MapFrom(src => src.attendanceStatus != null ? (src.attendanceStatus.code != null ? (CommonMethods.GetCodesetCode("RefAttendanceStatus", "RefAttendanceStatusId", "Code", src.attendanceStatus.code)) : null) : null))
             );
         }
     }

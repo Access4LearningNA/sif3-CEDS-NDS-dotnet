@@ -12,6 +12,7 @@ using System.Web.Http;
 using Sif.NdsProvider.Mappers;
 using SIF.NDSDataModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace SifNdsProvider
 {
@@ -54,6 +55,7 @@ namespace SifNdsProvider
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<CEDSContext>(options => options.UseSqlServer(connection));
             services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //services.AddMvc(config =>
             //{
             //    // Add XML Content Negotiation
@@ -75,7 +77,7 @@ namespace SifNdsProvider
             app.UseApplicationInsightsRequestTelemetry();
 
             app.UseApplicationInsightsExceptionTelemetry();
-
+           
             //app.UseMvc();
             app.UseMvc(routes =>
             {

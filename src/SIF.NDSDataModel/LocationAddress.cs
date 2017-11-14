@@ -6,10 +6,11 @@ namespace SIF.NDSDataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("ODS.LocationAddress")]
+    [Table("LocationAddress", Schema = "ODS")]
     public partial class LocationAddress
     {
         [Key]
+        [ForeignKey("Location")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int LocationId { get; set; }
 

@@ -121,6 +121,7 @@
     <Compile Include="CourseSectionSchedule.cs" />
     <Compile Include="CteCourse.cs" />
     <Compile Include="ELEnrollment.cs" />
+    <Compile Include="FinancialAccount.cs" />
     <Compile Include="Incident.cs" />
     <Compile Include="K12School.cs" />
     <Compile Include="K12StaffAssignment.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="PersonProgramParticipation.cs" />
     <Compile Include="PersonStatus.cs" />
     <Compile Include="PersonTelephone.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="ProgramParticipationCte.cs" />
     <Compile Include="ProgramParticipationSpecialEducation.cs" />
     <Compile Include="ProgramParticipationTitleI.cs" />

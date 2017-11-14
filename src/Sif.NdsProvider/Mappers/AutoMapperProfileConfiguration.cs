@@ -28,6 +28,9 @@ namespace Sif.NdsProvider.Mappers
                 x.AddProfile<SchoolCalendarMapper>();
                 x.AddProfile<SchoolCalendarItemMapper>();
                 x.AddProfile<DisciplineIncidentMapper>();
+                x.AddProfile<PersonMapper>();
+                x.AddProfile<ProgramMapper>();
+                x.AddProfile<SeaMapper>();
             });
         }
     }

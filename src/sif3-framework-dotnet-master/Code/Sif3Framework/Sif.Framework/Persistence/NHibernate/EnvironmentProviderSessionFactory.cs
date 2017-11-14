@@ -17,6 +17,8 @@
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
+using System.IO;
+using System.Web.Hosting;
 
 namespace Sif.Framework.Persistence.NHibernate
 {
@@ -42,11 +44,12 @@ namespace Sif.Framework.Persistence.NHibernate
                 if (environmentProviderSessionFactory == null)
                 {
                     environmentProviderSessionFactory = new EnvironmentProviderSessionFactory();
-                    //string configurationFilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/SifFramework.cfg.xml");
+                  
+                   // string configurationFilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/SifFramework.cfg.xml");
                     string configurationFilePath = null;
                     if (configurationFilePath == null)
                     {
-                        configurationFilePath = "D:\\Projects\\SIF\\src\\Sif.NdsProvider\\SifFramework.cfg.xml";
+                        configurationFilePath = Directory.GetCurrentDirectory()+"\\SifFramework.cfg.xml";
                     }
 
                     Configuration configuration = new Configuration().Configure(configurationFilePath);

@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using Microsoft.AspNetCore.Http;
 using Sif.Framework.Extensions;
 using Sif.Framework.Model.DataModels;
 using Sif.Framework.Model.Exceptions;
@@ -33,6 +34,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
+using System.Net.Http.Headers;
 
 namespace Sif.Framework.Providers
 {
@@ -80,7 +82,7 @@ namespace Sif.Framework.Providers
         /// </summary>
         public virtual IHttpActionResult Post(TSingle obj, [MatrixParameter] string[] zone = null, [MatrixParameter] string[] context = null)
         {
-
+            
             if (!authService.VerifyAuthenticationHeader(Request.Headers.Authorization))
             {
                 return Unauthorized();

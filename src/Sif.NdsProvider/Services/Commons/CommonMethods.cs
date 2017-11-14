@@ -9,7 +9,7 @@ namespace Sif.NdsProvider.Services.Commons
 {
     public static class CommonMethods
     {
-         public static string GetCodesetCode(string tableName,string idColumn,string codeSet)
+         public static string GetCodesetCode(string tableName,string idColumn, string CodeColumn,string codeSet)
         {
             string result = null;
             var optionsBuilder = new DbContextOptionsBuilder<CEDSContext>();
@@ -28,7 +28,7 @@ namespace Sif.NdsProvider.Services.Commons
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandText = "SIF.USP_GetIdValueByCode";
                         cmd.Parameters.Add("@TableName", SqlDbType.VarChar, 50).Value = tableName;
-                        cmd.Parameters.Add("@CodeColumn", SqlDbType.VarChar, 50).Value = "Code";
+                        cmd.Parameters.Add("@CodeColumn", SqlDbType.VarChar, 50).Value = CodeColumn;
                         cmd.Parameters.Add("@IdColumn", SqlDbType.VarChar, 50).Value = idColumn;
                         cmd.Parameters.Add("@CodeValue", SqlDbType.VarChar, 50).Value = codeSet;
                         SqlParameter p1 = new SqlParameter("retValue", SqlDbType.Int);

@@ -16,8 +16,6 @@ namespace Sif.NdsProvider.Services
 {
     public class SchoolService : IBasicProviderService<School>
     {
-        private static IDictionary<string, School> schoolsCache = new Dictionary<string, School>();
-        private static Random random = new Random();
        
         public School Create(School schoolObj, bool? mustUseAdvisory = null, string zone = null, string context = null)
         {
@@ -53,7 +51,7 @@ namespace Sif.NdsProvider.Services
                 if (schoolObj.externalIdList != null)
                 {
                     var orgExternalIdIdentifier = new OrganizationIdentifier();
-                    orgExternalIdIdentifier.Identifier = schoolObj.externalIdList.Select(x => x.idType.code.ToString() == "NCES Identification system" ? x.idValue.ToString() : null).FirstOrDefault();
+                    orgExternalIdIdentifier.Identifier = schoolObj.externalIdList.Select(x =>x.idValue.ToString()).FirstOrDefault() ;
                     orgExternalIdIdentifier.RefOrganizationIdentificationSystemId= schoolObj.externalIdList.Select(x => x.idValue != null ?Convert.ToInt32(SchoolExternalId.externalIdOrganizationIdentificationSystemId) : 0).FirstOrDefault();
                     orgExternalIdIdentifier.RefOrganizationIdentifierTypeId= schoolObj.externalIdList.Select(x => x.idValue != null ? Convert.ToInt32(SchoolExternalId.externalIdOrganizationIdentifierTypeId) : 0).FirstOrDefault();
                     orgExternalIdIdentifier.OrganizationId = org.OrganizationId;
@@ -62,7 +60,7 @@ namespace Sif.NdsProvider.Services
                 if (schoolObj.localId != null)
                 {
                     var orgLocalIdIdentifier = new OrganizationIdentifier();
-                    orgLocalIdIdentifier.Identifier = (schoolObj.localId.idType.code.ToString() == "State assigned number" ? schoolObj.localId.idValue.ToString() : null);
+                    orgLocalIdIdentifier.Identifier = (schoolObj.localId.idValue.ToString());
                     orgLocalIdIdentifier.RefOrganizationIdentificationSystemId = (schoolObj.localId.idValue.ToString() != null ? Convert.ToInt32(SchoolLocalId.localIdOrganizationIdentificationSystemId) : 0);
                     orgLocalIdIdentifier.RefOrganizationIdentifierTypeId = (schoolObj.localId.idValue.ToString() != null ? Convert.ToInt32(SchoolLocalId.localIdOrganizationIdentifierTypeId) : 0);
                     orgLocalIdIdentifier.OrganizationId = org.OrganizationId;
@@ -73,7 +71,12 @@ namespace Sif.NdsProvider.Services
                 if (schoolObj.schoolContactList != null)
                 {
                     _context.Person.Add(person);
-                   
+                    var orgpersonrole = new OrganizationPersonRole();
+                    orgpersonrole.PersonId = person.PersonId;
+                    orgpersonrole.OrganizationId = org.OrganizationId;
+                    orgpersonrole.RoleId = _context.Role.Where(x => x.Name == MyEnumClass.OrganizationContactRole).Select(y => y.RoleId).FirstOrDefault();
+                    _context.OrganizationPersonRole.Add(orgpersonrole);
+
                     var perDetails = Mapper.Map<PersonDetail>(schoolObj);
                     perDetails.PersonId = person.PersonId;
                     perDetails.RecordStartDateTime = DateTime.Now;
@@ -90,6 +93,24 @@ namespace Sif.NdsProvider.Services
                     var perOtherName = Mapper.Map<PersonOtherName>(schoolObj);
                     perOtherName.PersonId = person.PersonId;
                     _context.PersonOtherName.Add(perOtherName);
+                    List<PersonIdentifier> perIdentifier = new List<PersonIdentifier>();
+                    if (schoolObj.schoolContactList.FirstOrDefault().externalId != null)
+                    {
+                        var personIdentifier = new PersonIdentifier();
+                        personIdentifier.PersonId = person.PersonId;
+                        personIdentifier.Identifier = schoolObj.schoolContactList.Select(x => x.externalId.idValue.ToString()).FirstOrDefault();
+                        personIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(SchoolContactPersonExternalId.ExternalIdPersonIdentificationSystemId);
+                        perIdentifier.Add(personIdentifier);
+                    }
+                    if (schoolObj.schoolContactList.FirstOrDefault().localId != null)
+                    {
+                        var personIdentifier = new PersonIdentifier();
+                        personIdentifier.PersonId = person.PersonId;
+                        personIdentifier.Identifier = schoolObj.schoolContactList.Select(x => x.localId.idValue.ToString()).FirstOrDefault();
+                        personIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(SchoolContactPersonLocalId.localIdPersonIdentificationSystemId);
+                        perIdentifier.Add(personIdentifier);
+                    }
+                    _context.PersonIdentifier.AddRange(perIdentifier);
                 }
                 if (schoolObj.schoolFocusList != null && schoolObj.schoolSector != null)
                 {

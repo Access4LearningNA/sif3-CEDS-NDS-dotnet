@@ -18,16 +18,12 @@ D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.NdsProvider.pdb
 D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.Framework.dll
 D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\SIF.NDSDataModel.dll
 D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.Specification.DataModel.Us.dll
-D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\log4net.dll
-D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\NHibernate.dll
 D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.Framework.pdb
 D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.Framework.xml
 D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.Framework.dll.config
 D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\SIF.NDSDataModel.pdb
 D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\SIF.NDSDataModel.dll.config
 D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\Sif.Specification.DataModel.Us.pdb
-D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\log4net.xml
-D:\Projects\SIF\src\Sif.NdsProvider\bin\Debug\netcoreapp2.0\NHibernate.xml
 D:\Projects\SIF\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.csprojResolveAssemblyReference.cache
 D:\Projects\SIF\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.csproj.CoreCompileInputs.cache
 D:\Projects\SIF\src\Sif.NdsProvider\obj\Debug\netcoreapp2.0\Sif.NdsProvider.AssemblyInfoInputs.cache

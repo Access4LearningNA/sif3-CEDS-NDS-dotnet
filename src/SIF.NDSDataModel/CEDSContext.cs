@@ -47,7 +47,10 @@ namespace SIF.NDSDataModel
         public virtual DbSet<OrganizationCalendar> OrganizationCalendar { get; set; }
         public virtual DbSet<OrganizationCalendarEvent> OrganizationCalendarEvent { get; set; }
         public virtual DbSet<OrganizationCalendarSession> OrganizationCalendarSession { get; set; }
-        //public virtual DbSet<OrganizationIdentifier> OrganizationIdentifier { get; set; }
+        public virtual DbSet<FinancialAccount> FinancialAccount { get; set; }
+        public virtual DbSet<Location> Location { get; set; }
+        public virtual DbSet<LocationAddress> LocationAddress { get; set; }
+
 
 
 

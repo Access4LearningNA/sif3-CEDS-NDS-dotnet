@@ -13,10 +13,19 @@ namespace Sif.NdsProvider.Services.Commons
     }
     public enum SchoolLocalId
     {
-        localIdOrganizationIdentificationSystemId = 36,
-        localIdOrganizationIdentifierTypeId = 13
+        localIdOrganizationIdentificationSystemId = 13,
+        localIdOrganizationIdentifierTypeId = 9
     }
+    public enum SchoolContactPersonLocalId
+    {
+        localIdPersonIdentificationSystemId = 20,
+        
+    }
+    public enum SchoolContactPersonExternalId
+    {
+        ExternalIdPersonIdentificationSystemId = 21,
 
+    }
     public enum StudentExternalId
     {
          externalIdPersonIdentificationSystemId = 8,
@@ -37,10 +46,12 @@ namespace Sif.NdsProvider.Services.Commons
     {
         public const string EconomicDisadvantage = "Economic Disadvantage";
         public const string StudentRole = "K12 Student";
+        public const string OrganizationContactRole = "Organization Contact";
         public const string CalendarCode = "CalendarCode";
         public const string EntryType = "EntryType";
         public const string PrimaryDisabilityType = "PrimaryDisabilityType";
         public const string LEPStatus = "LEPStatus";
+        public const string FinancialExpenditureK12ProjectReportingCode = "FinancialExpenditureK12ProjectReportingCode";
 
     }
 }

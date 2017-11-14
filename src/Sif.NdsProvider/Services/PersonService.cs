@@ -42,7 +42,7 @@ namespace Sif.NdsProvider.Services
                         foreach (var races in personObj.demographics.raceList)
                         {
                             var race = new PersonDemographicRace();
-                            race.RefRaceId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefRace", "RefRaceId", races.code.ToString()));
+                            race.RefRaceId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefRace", "RefRaceId", "Code", races.code.ToString()));
                             race.RecordStartDateTime = DateTime.Now;
                             race.PersonId = person.PersonId;
                             personRace.Add(race);

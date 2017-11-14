@@ -44,7 +44,7 @@ namespace Sif.NdsProvider.Services
                     foreach (var races in studentObj.demographics.raceList)
                     {
                         var race = new PersonDemographicRace();
-                        race.RefRaceId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefRace", "RefRaceId", races.code.ToString()));
+                        race.RefRaceId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefRace", "RefRaceId", "Code", races.code.ToString()));
                         race.RecordStartDateTime = DateTime.Now;
                         race.PersonId = person.PersonId;
                         personRace.Add(race);
@@ -100,8 +100,8 @@ namespace Sif.NdsProvider.Services
                 {
                     var orgPersonRole = new OrganizationPersonRole();
                     orgPersonRole.PersonId = person.PersonId;
-                    orgPersonRole.RoleId = Convert.ToInt32(CommonMethods.GetCodesetCode("Role", "RoleId", MyEnumClass.StudentRole));
-                    orgPersonRole.OrganizationId = Convert.ToInt32(CommonMethods.GetCodesetCode("Organization", "OrganizationId", studentObj.mostRecentEnrollment.schoolLocalId.ToString()));
+                    orgPersonRole.RoleId = Convert.ToInt32(CommonMethods.GetCodesetCode("Role", "RoleId","Name", MyEnumClass.StudentRole));
+                    orgPersonRole.OrganizationId = Convert.ToInt32(CommonMethods.GetCodesetCode("organizationidentifier", "OrganizationId", "Identifier", studentObj.mostRecentEnrollment.schoolLocalId.ToString()));
                     _context.OrganizationPersonRole.Add(orgPersonRole);
                     var stuPerProgParticipation = new PersonProgramParticipation();
                     if (studentObj.projectedGraduationYear != null)
@@ -119,13 +119,13 @@ namespace Sif.NdsProvider.Services
                     if (studentObj.disability.section504Status.ToLower() == "yes")
                     {
                         stuPerProgParticipation.OrganizationPersonRoleId = orgPersonRole.OrganizationPersonRoleId;
-                        stuPerProgParticipation.RefParticipationTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefParticipationType", "RefParticipationTypeId", "Section504"));
+                        stuPerProgParticipation.RefParticipationTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefParticipationType", "RefParticipationTypeId", "Code", "Section504"));
                         stuPerProgParticipation.RecordStartDateTime = DateTime.Now;
                         _context.PersonProgramParticipation.Add(stuPerProgParticipation);
                     }
                     if (studentObj.neglectedDelinquent.ToString().ToLower() == "yes")
                     {
-                        stuPerProgParticipation.RefParticipationTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefParticipationType", "RefParticipationTypeId", "Section504"));
+                        stuPerProgParticipation.RefParticipationTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefParticipationType", "RefParticipationTypeId", "Code", "Section504"));
                         stuPerProgParticipation.RecordStartDateTime = DateTime.Now;
                         stuPerProgParticipation.OrganizationPersonRoleId = orgPersonRole.OrganizationPersonRoleId;
                         _context.PersonProgramParticipation.Add(stuPerProgParticipation);
@@ -149,7 +149,7 @@ namespace Sif.NdsProvider.Services
                 {
                     var perStatus = new PersonStatus();
                     perStatus.PersonId = person.PersonId;
-                    perStatus.RefPersonStatusTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefPersonstatustype", "RefPersonStatusTypeId", MyEnumClass.EconomicDisadvantage));
+                    perStatus.RefPersonStatusTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefPersonstatustype", "RefPersonStatusTypeId", "Code", MyEnumClass.EconomicDisadvantage));
                     perStatus.StatusValue =Convert.ToBoolean(YesNoUnknown.Yes);
                     perStatus.StatusStartDate = DateTime.Now;
                     _context.PersonStatus.Add(perStatus);
@@ -158,7 +158,7 @@ namespace Sif.NdsProvider.Services
                 {
                     var perStatus = new PersonStatus();
                     perStatus.PersonId = person.PersonId;
-                    perStatus.RefPersonStatusTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefPersonstatustype", "RefPersonStatusTypeId", MyEnumClass.EconomicDisadvantage));
+                    perStatus.RefPersonStatusTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefPersonstatustype", "RefPersonStatusTypeId", "Code", MyEnumClass.EconomicDisadvantage));
                     perStatus.StatusValue = Convert.ToBoolean(YesNoUnknown.Yes);
                     perStatus.StatusStartDate = DateTime.Now;
                     _context.PersonStatus.Add(perStatus);
