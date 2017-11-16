@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using Sif.Framework.Model.Query;
 using Sif.Framework.Service.Providers;
 using Sif.Framework.Service.Serialisation;
 using Sif.NdsProvider.Model;
 using Sif.NdsProvider.Services.Commons;
-using Sif.Specification.DataModel.Us;
 using SIF.NDSDataModel;
 using System;
 using System.Collections.Generic;

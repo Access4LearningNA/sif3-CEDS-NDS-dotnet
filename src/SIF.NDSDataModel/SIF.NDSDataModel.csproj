@@ -123,6 +123,7 @@
     <Compile Include="ELEnrollment.cs" />
     <Compile Include="FinancialAccount.cs" />
     <Compile Include="Incident.cs" />
+    <Compile Include="K12Lea.cs" />
     <Compile Include="K12School.cs" />
     <Compile Include="K12StaffAssignment.cs" />
     <Compile Include="K12StudentAcademicRecord.cs" />

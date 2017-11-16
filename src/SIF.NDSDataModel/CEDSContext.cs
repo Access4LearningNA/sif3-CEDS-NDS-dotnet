@@ -51,7 +51,7 @@ namespace SIF.NDSDataModel
         public virtual DbSet<Location> Location { get; set; }
         public virtual DbSet<LocationAddress> LocationAddress { get; set; }
 
-
+        public virtual DbSet<K12Lea> K12Lea { get; set; }
 
 
         //public virtual DbSet<OrganizationLocation> OrganizationLocation { get; set; }
