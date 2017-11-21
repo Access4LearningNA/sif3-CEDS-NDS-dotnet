@@ -53,7 +53,8 @@ namespace SIF.NDSDataModel
 
         public virtual DbSet<K12Lea> K12Lea { get; set; }
 
-
+        public virtual DbSet<Incident> Incident { get; set; }
+        public virtual DbSet<K12StudentDiscipline> K12StudentDiscipline { get; set; }
         //public virtual DbSet<OrganizationLocation> OrganizationLocation { get; set; }
 
 
@@ -88,8 +89,7 @@ namespace SIF.NDSDataModel
         //public virtual DbSet<CourseSection> CourseSection { get; set; }
         //public virtual DbSet<CourseSectionLocation> CourseSectionLocation { get; set; }
         //public virtual DbSet<Course> Courses { get; set; }
-        //public virtual DbSet<Incident> Incident { get; set; }
-        //public virtual DbSet<K12StudentDiscipline> K12StudentDiscipline { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
            

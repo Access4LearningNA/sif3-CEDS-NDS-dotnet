@@ -158,6 +158,7 @@
     <Compile Include="PersonLanguage.cs" />
     <Compile Include="PersonOtherName.cs" />
     <Compile Include="PersonProgramParticipation.cs" />
+    <Compile Include="PersonRelationship.cs" />
     <Compile Include="PersonStatus.cs" />
     <Compile Include="PersonTelephone.cs" />
     <Compile Include="Program.cs" />
