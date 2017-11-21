@@ -23,14 +23,14 @@ namespace Sif.NdsProvider.Services
                 {
                     incidentObj = Mapper.Map<Incident>(disciplineIncidentObj);
                     incidentObj.IncidentId = 0;
-                   // _context.Incident.Add(incidentObj);
+                    _context.Incident.Add(incidentObj);
                 }
               
                 if (disciplineIncidentObj.incidentActionList != null || disciplineIncidentObj.offenderList != null)
                 {
                     var k12StuDiscipline = Mapper.Map<K12StudentDiscipline>(disciplineIncidentObj);
                     k12StuDiscipline.IncidentId = incidentObj.IncidentId;
-                   // _context.K12StudentDiscipline.Add(k12StuDiscipline);
+                   _context.K12StudentDiscipline.Add(k12StuDiscipline);
                 }               
                 _context.SaveChanges();
                
