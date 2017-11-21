@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using Sif.NdsProvider.Model;
-using SIF.NDSDataModel;
+
 
 
 namespace Sif.NdsProvider.Mappers
@@ -31,6 +30,9 @@ namespace Sif.NdsProvider.Mappers
                 x.AddProfile<PersonMapper>();
                 x.AddProfile<ProgramMapper>();
                 x.AddProfile<SeaMapper>();
+                x.AddProfile<LeaMapper>();
+                x.AddProfile<ContactPersonMapper>();
+                x.AddProfile<ContactPersonAssociationMapper>();
             });
         }
     }
