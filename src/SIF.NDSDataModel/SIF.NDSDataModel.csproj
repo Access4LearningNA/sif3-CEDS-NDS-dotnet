@@ -171,6 +171,7 @@
     <Compile Include="PsStudentCohort.cs" />
     <Compile Include="PsStudentSection.cs" />
     <Compile Include="RefISO6393Language.cs" />
+    <Compile Include="RefPersonIdentificationSystem.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="RoleAttendance.cs" />
     <Compile Include="RoleAttendanceEvent.cs" />

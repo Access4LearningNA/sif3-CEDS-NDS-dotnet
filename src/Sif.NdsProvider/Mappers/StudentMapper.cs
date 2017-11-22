@@ -43,6 +43,7 @@ namespace Sif.NdsProvider.Mappers
             .ForMember(dest => dest.RefEmailTypeId, map => map.MapFrom(src => src.emailList.Any() ? CommonMethods.GetCodesetCode("RefEmailType", "RefEmailTypeId", "Code", src.emailList.FirstOrDefault().emailType.code) : null));
 
             CreateMap<Student, PersonLanguage>()
+                .ForMember(dest => dest.RefLanguageId, map => map.MapFrom(src => src.demographics.languageList.Any() ? CommonMethods.GetCodesetCode("RefLanguage", "RefLanguageId", "Code", src.demographics.languageList.FirstOrDefault().languageCode.code) : null))
              .ForMember(dest => dest.RefLanguageUseTypeId, map => map.MapFrom(src => src.demographics.languageList.Any() ? CommonMethods.GetCodesetCode("RefLanguageUseType", "RefLanguageUseTypeId", "Code", src.demographics.languageList.FirstOrDefault().languageType) : "0"));
 
             CreateMap<Student, PersonOtherName>()
@@ -58,16 +59,7 @@ namespace Sif.NdsProvider.Mappers
             .ForMember(dest => dest.TelephoneNumber, map => map.MapFrom(src => src.phoneNumberList.Any() ? src.phoneNumberList.FirstOrDefault().number+"-"+ src.phoneNumberList.FirstOrDefault().extension : null))
             .ForMember(dest => dest.PrimaryTelephoneNumberIndicator, map => map.MapFrom(src => src.phoneNumberList.Any(y => y.listedStatus.ToString() == "Yes")))
             .ForMember(dest => dest.RefPersonTelephoneNumberTypeId, map => map.MapFrom(src => src.phoneNumberList.Any() ? CommonMethods.GetCodesetCode("RefPersonTelephoneNumberType", "RefPersonTelephoneNumberTypeId", "Code", src.phoneNumberList.FirstOrDefault().phoneNumberType.code) : null));
-
-            CreateMap<Student, PersonStatus>()
-                .ForMember(dest => dest.RefPersonStatusTypeId, map => map.MapFrom(src => src.economicDisadvantage.ToString().ToLower() == "yes" ? CommonMethods.GetCodesetCode("RefPersonstatustype", "RefPersonStatusTypeId", "Code", MyEnumClass.EconomicDisadvantage):null));
-
-            CreateMap<Student, PersonStatus>()
-               .ForMember(dest => dest.RefPersonStatusTypeId, map => map.MapFrom(src => src.ell.ToString() == "yes" ? CommonMethods.GetCodesetCode("RefPersonstatustype", "RefPersonStatusTypeId", "Code", src.ell.ToString()) : null));
-
-            CreateMap<Student, RefISO6393Language>()
-            .ForMember(dest => dest.Code, map => map.MapFrom(src => src.demographics.languageList.Any() ? src.demographics.languageList.FirstOrDefault().languageCode.code : null));
-
+            
             CreateMap<Student, ProgramParticipationTitleI>()
            .ForMember(dest => dest.RefTitleIIndicatorId, map => map.MapFrom(src => src.title1 != null ? CommonMethods.GetCodesetCode("RefTitleIIndicator", "RefTitleIIndicatorId", "Code", src.title1.ToString()) : null));
 
@@ -75,12 +67,11 @@ namespace Sif.NdsProvider.Mappers
                .ForMember(dest => dest.AwaitingInitialIDEAEvaluationStatus, map => map.MapFrom(src => src.disability.awaitingInitialIDEAEvaluation.ToString().Any(x => x.ToString() == "Yes")))
                .ForMember(dest => dest.RefIDEAEdEnvironmentSchoolAgeId, map => map.MapFrom(src => src.disability.ideaEnvironment.code != null ? CommonMethods.GetCodesetCode("RefIDEAEducationalEnvironmentSchoolAge", "RefIDEAEducationalEnvironmentSchoolAgeId", "Code", src.disability.ideaEnvironment.code) : null))
                .ForMember(dest => dest.RefIDEAEducationalEnvironmentECId, map => map.MapFrom(src => src.disability.ideaIndicator.ToString() != null ? CommonMethods.GetCodesetCode("RefIDEAEducationalEnvironmentEC", "RefIDEAEducationalEnvironmentECId", "Code", src.disability.ideaIndicator.ToString()) : null));
-
            
             CreateMap<Student, K12StudentAcademicRecord>()
-          .ForMember(dest => dest.ProjectedGraduationDate, map => map.MapFrom(src => src.projectedGraduationYear));
+                .ForMember(dest => dest.ProjectedGraduationDate, map => map.MapFrom(src => src.projectedGraduationYear));
             CreateMap<Student, K12StudentCohort>()
-            .ForMember(dest => dest.CohortGraduationYear, map => map.MapFrom(src => src.onTimeGraduationYear));
+                .ForMember(dest => dest.CohortGraduationYear, map => map.MapFrom(src => src.onTimeGraduationYear));
         }
     }
 }

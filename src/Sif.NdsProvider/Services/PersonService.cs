@@ -8,6 +8,7 @@ using Sif.Specification.DataModel.Us;
 using SIF.NDSDataModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Sif.NdsProvider.Services
 {
@@ -91,19 +92,21 @@ namespace Sif.NdsProvider.Services
                         List<PersonIdentifier> perIdentifier = new List<PersonIdentifier>();
                         if (personObj.localId != null)
                         {
+                            var personIdentificationSystemId = _context.RefPersonIdentificationSystem.Where(x => x.RefPersonIdentifierTypeId == 5 && x.Code == personObj.localId.idType.code.ToString()).Select(y => y.RefPersonIdentificationSystemId).FirstOrDefault();
                             var perLocalIdIdentifier = new PersonIdentifier();
                             perLocalIdIdentifier.Identifier = personObj.localId.idValue.ToString();
                             perLocalIdIdentifier.PersonId = person.PersonId;
-                            perLocalIdIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(StudentLocalId.localIdPersonIdentificationSystemId);
+                            perLocalIdIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(personIdentificationSystemId);
                             //stuIdentifier.RefPersonalInformationVerificationId = "";
                             perIdentifier.Add(perLocalIdIdentifier);
                         }
                         if (personObj.externalId != null)
                         {
+                            var personIdentificationSystemId = _context.RefPersonIdentificationSystem.Where(x => x.RefPersonIdentifierTypeId == 5 && x.Code == personObj.externalId.idType.code.ToString()).Select(y => y.RefPersonIdentificationSystemId).FirstOrDefault();
                             var perExternalIdIdentifier = new PersonIdentifier();
                             perExternalIdIdentifier.Identifier = personObj.externalId.idValue.ToString();
                             perExternalIdIdentifier.PersonId = person.PersonId;
-                            perExternalIdIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(StudentExternalId.externalIdPersonIdentificationSystemId);
+                            perExternalIdIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(personIdentificationSystemId);
                             // stuIdentifier.RefPersonalInformationVerificationId = "";
                             perIdentifier.Add(perExternalIdIdentifier);
                         }

@@ -58,7 +58,7 @@ namespace SIF.NDSDataModel
         public virtual DbSet<StaffEmployment> StaffEmployment { get; set; }
         public virtual DbSet<K12Sea> K12Sea { get; set; }
         public virtual DbSet<OrganizationRelationship> OrganizationRelationship { get; set; }
-
+        public virtual DbSet<RefPersonIdentificationSystem> RefPersonIdentificationSystem { get; set; }
         //public virtual DbSet<OrganizationLocation> OrganizationLocation { get; set; }
 
 

@@ -8,6 +8,7 @@ using Sif.Specification.DataModel.Us;
 using SIF.NDSDataModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace Sif.NdsProvider.Services
@@ -158,36 +159,33 @@ namespace Sif.NdsProvider.Services
                 {
                     var perStatus = new PersonStatus();
                     perStatus.PersonId = person.PersonId;
-                    perStatus.RefPersonStatusTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefPersonstatustype", "RefPersonStatusTypeId", "Code", MyEnumClass.EconomicDisadvantage));
+                    perStatus.RefPersonStatusTypeId = Convert.ToInt32(CommonMethods.GetCodesetCode("RefPersonstatustype", "RefPersonStatusTypeId", "Code", MyEnumClass.LEPStatus));
                     perStatus.StatusValue = Convert.ToBoolean(YesNoUnknown.Yes);
                     perStatus.StatusStartDate = DateTime.Now;
                     _context.PersonStatus.Add(perStatus);
                 }
-                if (studentObj.demographics.languageList != null)
-                {
-                    var stuISO6393Language = Mapper.Map<RefISO6393Language>(studentObj);
-                    _context.RefISO6393Language.Add(stuISO6393Language);
-                }
+               
                 if (studentObj.electronicIdList != null || studentObj.externalId != null || studentObj.localId != null)
                 {
 
                     List<PersonIdentifier> perIdentifier = new List<PersonIdentifier>();
                     if (studentObj.localId != null)
                     {
+                        var refPersonIdentificationSystemId = _context.RefPersonIdentificationSystem.Where(x => x.RefPersonIdentifierTypeId == 4 && x.Code == studentObj.localId.idType.code.ToString()).Select(y => y.RefPersonIdentificationSystemId).FirstOrDefault();
                         var stuLocalIdIdentifier = new PersonIdentifier();
                         stuLocalIdIdentifier.Identifier = studentObj.localId.idValue.ToString();
                         stuLocalIdIdentifier.PersonId = person.PersonId;
-                        stuLocalIdIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(StudentLocalId.localIdPersonIdentificationSystemId);
-                        //stuIdentifier.RefPersonalInformationVerificationId = "";
+                        stuLocalIdIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(refPersonIdentificationSystemId);
+                       
                         perIdentifier.Add(stuLocalIdIdentifier);
                     }
                     if (studentObj.externalId != null)
                     {
+                        var refPersonIdentificationSystemId = _context.RefPersonIdentificationSystem.Where(x => x.RefPersonIdentifierTypeId == 4 && x.Code == studentObj.externalId.idType.code.ToString()).Select(y => y.RefPersonIdentificationSystemId).FirstOrDefault();
                         var stuExternalIdIdentifier = new PersonIdentifier();
                         stuExternalIdIdentifier.Identifier = studentObj.externalId.idValue.ToString();
                         stuExternalIdIdentifier.PersonId = person.PersonId;
-                        stuExternalIdIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(StudentExternalId.externalIdPersonIdentificationSystemId);
-                        // stuIdentifier.RefPersonalInformationVerificationId = "";
+                        stuExternalIdIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(refPersonIdentificationSystemId);
                         perIdentifier.Add(stuExternalIdIdentifier);
                     }
                     if (studentObj.electronicIdList != null)
@@ -198,8 +196,7 @@ namespace Sif.NdsProvider.Services
 
                             stuElectronicIdIdentifier.Identifier = electronicId.idValue.ToString();
                             stuElectronicIdIdentifier.PersonId = person.PersonId;
-                            //stuIdentifier.RefPersonIdentificationSystemId = "";
-                            // stuIdentifier.RefPersonalInformationVerificationId = "";
+                           
                         }
                         perIdentifier.Add(stuElectronicIdIdentifier);
 
