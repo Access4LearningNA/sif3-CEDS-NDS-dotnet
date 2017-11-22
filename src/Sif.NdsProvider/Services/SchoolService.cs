@@ -125,6 +125,14 @@ namespace Sif.NdsProvider.Services
                     orgWebSite.OrganizationId = org.OrganizationId;
                     _context.OrganizationWebsite.Add(orgWebSite);
                 }
+                if(schoolObj.leaRefId !=null)
+                {
+                    var orgId = _context.Organization.Where(x => x.refId == schoolObj.leaRefId).Select(y => y.OrganizationId).FirstOrDefault();
+                    var orgRelationship = new OrganizationRelationship();
+                    orgRelationship.OrganizationId = org.OrganizationId;
+                    orgRelationship.Parent_OrganizationId = _context.K12Lea.Where(x => x.OrganizationId == orgId).Select(y => y.OrganizationId).FirstOrDefault();
+                    _context.OrganizationRelationship.Add(orgRelationship);
+                }
                 _context.SaveChanges();
             }
 

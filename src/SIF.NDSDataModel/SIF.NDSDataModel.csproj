@@ -125,6 +125,7 @@
     <Compile Include="Incident.cs" />
     <Compile Include="K12Lea.cs" />
     <Compile Include="K12School.cs" />
+    <Compile Include="K12Sea.cs" />
     <Compile Include="K12StaffAssignment.cs" />
     <Compile Include="K12StudentAcademicRecord.cs" />
     <Compile Include="K12StudentCohort.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="OrganizationLocation.cs" />
     <Compile Include="OrganizationOperationalStatus.cs" />
     <Compile Include="OrganizationPersonRole.cs" />
+    <Compile Include="OrganizationRelationship.cs" />
     <Compile Include="OrganizationTelephone.cs" />
     <Compile Include="OrganizationWebsite.cs" />
     <Compile Include="Person.cs" />
@@ -175,6 +177,7 @@
     <Compile Include="SchoolAttributes.cs" />
     <Compile Include="SchoolAttributesCleanRecords.cs" />
     <Compile Include="SchoolAttributesErrorRecords.cs" />
+    <Compile Include="StaffEmployment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -109,10 +109,19 @@ namespace Sif.NdsProvider.Services
                         personIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(SchoolContactPersonLocalId.localIdPersonIdentificationSystemId);
                         perIdentifier.Add(personIdentifier);
                     }
+                    if(perIdentifier.Count>0)
                     _context.PersonIdentifier.AddRange(perIdentifier);
 
                 }
-                if(leaObj.addressRefIdList !=null)
+                var seaOrgId = _context.K12Sea.Select(x => x).OrderByDescending(y => y.OrganizationId).Take(1).FirstOrDefault();
+                if (seaOrgId != null)
+                {
+                    var orgRelationship = new OrganizationRelationship();
+                    orgRelationship.OrganizationId = org.OrganizationId;
+                    orgRelationship.Parent_OrganizationId = seaOrgId.OrganizationId;
+                    _context.OrganizationRelationship.Add(orgRelationship);
+                }
+                if (leaObj.addressRefIdList !=null)
                 {
                     //need to implement
                 }

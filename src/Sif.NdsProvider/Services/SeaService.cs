@@ -17,11 +17,14 @@ namespace Sif.NdsProvider.Services
         public Sea Create(Sea seaObj, bool? mustUseAdvisory = null, string zone = null, string context = null)
         {
             var org = new Organization();
+            var sea = new K12Sea();
             org.refId = seaObj.refId;
             var person = new Person();
             using (var _context = new CEDSContext(CommonMethods.GetConncetionString()))
             {
                 _context.Organization.Add(org);
+                sea.OrganizationId = org.OrganizationId;
+                _context.K12Sea.Add(sea);
                 var orgDetail = Mapper.Map<OrganizationDetail>(seaObj);
                 orgDetail.OrganizationId = org.OrganizationId;
                 orgDetail.RecordStartDateTime = DateTime.Now;
@@ -100,7 +103,9 @@ namespace Sif.NdsProvider.Services
                         personIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(SchoolContactPersonLocalId.localIdPersonIdentificationSystemId);
                         perIdentifier.Add(personIdentifier);
                     }
+                    if(perIdentifier.ToList().Count>0)
                     _context.PersonIdentifier.AddRange(perIdentifier);
+                    
 
                 }
                 _context.SaveChanges();
