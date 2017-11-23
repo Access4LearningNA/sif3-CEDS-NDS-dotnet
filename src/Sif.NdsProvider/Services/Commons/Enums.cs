@@ -16,6 +16,11 @@ namespace Sif.NdsProvider.Services.Commons
         localIdOrganizationIdentificationSystemId = 13,
         localIdOrganizationIdentifierTypeId = 9
     }
+    public enum PrgoramIdetifierLocalId
+    {
+        refOrgIdentificationSystemId=66,
+        refOrgIdentifierTypeId=15
+    }
     public enum SchoolContactPersonLocalId
     {
         localIdPersonIdentificationSystemId = 20,

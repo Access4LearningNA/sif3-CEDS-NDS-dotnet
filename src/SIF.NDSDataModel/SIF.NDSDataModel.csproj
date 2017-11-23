@@ -145,6 +145,7 @@
     <Compile Include="OrganizationLocation.cs" />
     <Compile Include="OrganizationOperationalStatus.cs" />
     <Compile Include="OrganizationPersonRole.cs" />
+    <Compile Include="OrganizationProgramType.cs" />
     <Compile Include="OrganizationRelationship.cs" />
     <Compile Include="OrganizationTelephone.cs" />
     <Compile Include="OrganizationWebsite.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="PsStudentCohort.cs" />
     <Compile Include="PsStudentSection.cs" />
     <Compile Include="RefISO6393Language.cs" />
+    <Compile Include="RefOrganizationIdentificationSystem.cs" />
     <Compile Include="RefPersonIdentificationSystem.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="RoleAttendance.cs" />

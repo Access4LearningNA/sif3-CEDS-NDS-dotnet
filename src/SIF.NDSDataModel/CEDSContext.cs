@@ -59,6 +59,10 @@ namespace SIF.NDSDataModel
         public virtual DbSet<K12Sea> K12Sea { get; set; }
         public virtual DbSet<OrganizationRelationship> OrganizationRelationship { get; set; }
         public virtual DbSet<RefPersonIdentificationSystem> RefPersonIdentificationSystem { get; set; }
+        public virtual DbSet<OrganizationProgramType> OrganizationProgramType { get; set; }
+        public virtual DbSet<Program> Program { get; set; }
+        public virtual DbSet<RefOrganizationIdentificationSystem> RefOrganizationIdentificationSystem { get; set; }
+       
         //public virtual DbSet<OrganizationLocation> OrganizationLocation { get; set; }
 
 

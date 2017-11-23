@@ -15,12 +15,18 @@ namespace Sif.NdsProvider.Mappers
         }
         public ProgramMapper()
         {
-            CreateMap<Program, OrganizationIdentifier>()
-                .ForMember(dest => dest.Identifier, map => map.MapFrom(src => src.managingSchoolLocalId.idValue));
-               // .ForMember(dest => dest.RefOrganizationIdentifierTypeId, map => map.MapFrom(SchoolLocalId.localIdOrganizationIdentifierTypeId.ToString()));
+
             CreateMap<Program, FinancialAccount>()
-                .ForMember(dest => dest.FinancialExpenditureProjectReportingCode, map => map.MapFrom(src => src.fundingSourceList.Select(x => x.codesetName == MyEnumClass.FinancialExpenditureK12ProjectReportingCode?x.code:null)));
-           // CreateMap<Program,>
+                .ForMember(dest => dest.FinancialExpenditureProjectReportingCode, map => map.MapFrom(src => src.fundingSourceList.Select(x => x.codesetName == MyEnumClass.FinancialExpenditureK12ProjectReportingCode ? x.code : null)))
+                .ForMember(dest => dest.Name, map => map.MapFrom(src => src.fundingSourceList.Select(x => x.codesetName.ToString())));
+            CreateMap<Program, OrganizationDetail>()
+                .ForMember(dest => dest.Name, map => map.MapFrom(src => src.programName.ToString()))
+                .ForMember(dest => dest.ShortName, map => map.MapFrom(src => src.programName.ToString()))
+                .ForMember(dest => dest.RecordStartDateTime, map => map.MapFrom(src => DateTime.Now));
+            CreateMap<Program, OrganizationProgramType>()
+                .ForMember(dest => dest.RefProgramTypeId, map => map.MapFrom(src => src.programType1.ToString() != null ? CommonMethods.GetCodesetCode("refProgramType", "RefProgramTypeId", "Code", src.programType1.ToString()) : null))
+                .ForMember(dest => dest.RecordStartDateTime, map => map.MapFrom(src => DateTime.Now));
+           
         }
     }
 }
