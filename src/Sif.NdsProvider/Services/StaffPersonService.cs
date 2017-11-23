@@ -79,15 +79,40 @@ namespace Sif.NdsProvider.Services
                     staffLang.PersonId = person.PersonId;
                     _context.PersonLanguage.Add(staffLang);
                 }
-                if(staffPersonObj.externalId !=null)
+                List<PersonIdentifier> perIdentifier = new List<PersonIdentifier>();
+                if (staffPersonObj.localId != null)
                 {
-
+                    var refPersonIdentificationSystemId = _context.RefPersonIdentificationSystem.Where(x => x.RefPersonIdentifierTypeId == 3 && x.Code == staffPersonObj.localId.idType.code.ToString()).Select(y => y.RefPersonIdentificationSystemId).FirstOrDefault();
+                    var stuLocalIdIdentifier = new PersonIdentifier();
+                    stuLocalIdIdentifier.Identifier = staffPersonObj.localId.idValue.ToString();
+                    stuLocalIdIdentifier.PersonId = person.PersonId;
+                    stuLocalIdIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(refPersonIdentificationSystemId);
+                    perIdentifier.Add(stuLocalIdIdentifier);
                 }
-                if(staffPersonObj.localId !=null)
+                if (staffPersonObj.externalId != null)
                 {
-
+                    var refPersonIdentificationSystemId = _context.RefPersonIdentificationSystem.Where(x => x.RefPersonIdentifierTypeId == 3 && x.Code == staffPersonObj.externalId.idType.code.ToString()).Select(y => y.RefPersonIdentificationSystemId).FirstOrDefault();
+                    var stuExternalIdIdentifier = new PersonIdentifier();
+                    stuExternalIdIdentifier.Identifier = staffPersonObj.externalId.idValue.ToString();
+                    stuExternalIdIdentifier.PersonId = person.PersonId;
+                    stuExternalIdIdentifier.RefPersonIdentificationSystemId = Convert.ToInt32(refPersonIdentificationSystemId);
+                    perIdentifier.Add(stuExternalIdIdentifier);
                 }
-                _context.SaveChanges();
+                if (staffPersonObj.electronicIdList != null)
+                {
+                    var stuElectronicIdIdentifier = new PersonIdentifier();
+                    foreach (var electronicId in staffPersonObj.electronicIdList)
+                    {
+                        stuElectronicIdIdentifier.Identifier = electronicId.idValue.ToString();
+                        stuElectronicIdIdentifier.PersonId = person.PersonId;
+                    }
+
+                    perIdentifier.Add(stuElectronicIdIdentifier);
+                }
+                if (perIdentifier.Count > 0)
+                    _context.PersonIdentifier.AddRange(perIdentifier);
+
+                    _context.SaveChanges();
             }
                 return staffPersonObj;
         }
