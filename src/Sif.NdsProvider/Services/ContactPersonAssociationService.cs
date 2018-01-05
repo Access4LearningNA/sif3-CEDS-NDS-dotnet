@@ -17,7 +17,20 @@ namespace Sif.NdsProvider.Services
     {
         public ContactPersonAssociation Create(ContactPersonAssociation conPerAssociationObj, bool? mustUseAdvisory = null, string zone = null, string context = null)
         {
-            return conPerAssociationObj;
+            using (var _context = new CEDSContext(CommonMethods.GetConncetionString()))
+            {
+                var perRelationship = new PersonRelationship();
+                if(conPerAssociationObj !=null)
+                {
+                    var perId = (_context.Person.Where(x => x.refId == conPerAssociationObj.personRefId.ToString()).Select(y => y.PersonId).FirstOrDefault());
+                    var contPersonId = (_context.Person.Where(x => x.refId == conPerAssociationObj.contactPersonRefId.ToString()).Select(y => y.PersonId).FirstOrDefault());
+                    perRelationship = Mapper.Map<PersonRelationship>(conPerAssociationObj);
+                    perRelationship.PersonId = perId;
+                    perRelationship.RelatedPersonId =contPersonId;
+                    _context.PersonRelationship.Add(perRelationship);
+                }
+            }
+                return conPerAssociationObj;
         }
 
         public void Delete(string refId, string zone = null, string context = null)

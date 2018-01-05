@@ -61,6 +61,7 @@ namespace Sif.NdsProvider.Services
                     prgIdentifier.RefOrganizationIdentificationSystemId = refOrgIdentificationSystemId;
                     prgIdentifier.RefOrganizationIdentifierTypeId = Convert.ToInt32(refOrgIdentifierTypeId);
                     prgIdentifier.OrganizationId = org.OrganizationId;
+                    prgIdentifier.Identifier = programObj.programIdentifier.idValue.ToString();
                     _context.OrganizationIdentifier.Add(prgIdentifier);
                 }
                 if(programObj.fundingSourceList !=null)

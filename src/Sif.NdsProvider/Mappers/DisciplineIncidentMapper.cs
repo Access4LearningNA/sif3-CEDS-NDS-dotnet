@@ -16,18 +16,18 @@ namespace Sif.NdsProvider.Mappers
         public DisciplineIncidentMapper()
         {
            CreateMap<DisciplineIncident, K12StudentDiscipline>()
-            .ForMember(dest => dest.DurationOfDisciplinaryAction, map => map.MapFrom(src => src.incidentActionList.Select(x => x.duration).FirstOrDefault()))
-            .ForMember(dest => dest.DisciplinaryActionEndDate, map => map.MapFrom(src => src.incidentActionList.Select(x => x.endDate).FirstOrDefault()))
-            .ForMember(dest => dest.RefDisciplinaryActionTakenId, map => map.MapFrom(src => src.incidentActionList.Select(x => x.policeNotification.ToString() != null ? CommonMethods.GetCodesetCode("RefDisciplinaryActionTaken", "RefDisciplinaryActionTakenId", "Code", "03100") : null).FirstOrDefault()))
-            .ForMember(dest => dest.DisciplinaryActionStartDate, map => map.MapFrom(src => src.incidentActionList.Select(x => x.startDate).FirstOrDefault()))
-            .ForMember(dest => dest.RelatedToZeroTolerancePolicy, map => map.MapFrom(src => src.incidentActionList.Any(x => x.zeroTolerance.ToString() == "Yes")))
-           // .ForMember(dest=>dest.DurationOfDisciplinaryAction,map=>map.MapFrom(src=>src.offenderList.Select(x=>x.actionList.Select(y=>y.actionDuration).FirstOrDefault())))
-            //.ForMember(dest=>dest.DisciplinaryActionEndDate,map=>map.MapFrom(src=>src.offenderList.Select(x=>x.actionList.Select(y=>y.actionEndDate).FirstOrDefault())))
-           // .ForMember(dest=>dest.DisciplinaryActionStartDate,map=>map.MapFrom(src=>src.offenderList.Select(x=>x.actionList.Select(y=>y.actionStartDate).FirstOrDefault())))
-            //.ForMember(dest=>dest.RefDisciplinaryActionTakenId,map=>map.MapFrom(src=>src.offenderList.Select(x=>x.actionList.Select(y=>y.code).FirstOrDefault())))
+           // .ForMember(dest => dest.DurationOfDisciplinaryAction, map => map.MapFrom(src => src.incidentActionList.Select(x => x.duration).FirstOrDefault()))
+           // .ForMember(dest => dest.DisciplinaryActionEndDate, map => map.MapFrom(src => src.incidentActionList.Select(x => x.endDate).FirstOrDefault()))
+           // .ForMember(dest => dest.RefDisciplinaryActionTakenId, map => map.MapFrom(src => src.incidentActionList.Select(x => x.policeNotification.ToString() != null ? CommonMethods.GetCodesetCode("RefDisciplinaryActionTaken", "RefDisciplinaryActionTakenId", "Code", "03100") : null).FirstOrDefault()))
+          //  .ForMember(dest => dest.DisciplinaryActionStartDate, map => map.MapFrom(src => src.incidentActionList.Select(x => x.startDate).FirstOrDefault()))
+          //  .ForMember(dest => dest.RelatedToZeroTolerancePolicy, map => map.MapFrom(src => src.incidentActionList.Any(x => x.zeroTolerance.ToString() == "Yes")))
+            .ForMember(dest=>dest.DurationOfDisciplinaryAction,map=>map.MapFrom(src=>src.offenderList.Select(x=>x.actionList.Select(y=>y.actionDuration).FirstOrDefault())))
+            .ForMember(dest=>dest.DisciplinaryActionEndDate,map=>map.MapFrom(src=>src.offenderList.Select(x=>x.actionList.Select(y=>y.actionEndDate).FirstOrDefault())))
+            .ForMember(dest=>dest.DisciplinaryActionStartDate,map=>map.MapFrom(src=>src.offenderList.Select(x=>x.actionList.Select(y=>y.actionStartDate).FirstOrDefault())))
+            .ForMember(dest=>dest.RefDisciplinaryActionTakenId,map=>map.MapFrom(src=>src.offenderList.Select(x=>x.actionList.Select(y=>y.code).FirstOrDefault())))
             .ForMember(dest=>dest.FullYearExpulsion,map=>map.MapFrom(src=>src.offenderList.Select(x=>x.actionList.Any(y=>y.fullYearExpulsion.ToString()=="Yes")).FirstOrDefault()))
             .ForMember(dest=>dest.ShortenedExpulsion,map=>map.MapFrom(src=>src.offenderList.Select(x=>x.actionList.Any(y=>y.shortenedExpulsion.ToString()=="Yes")).FirstOrDefault()))
-            //.ForMember(dest=>dest.RelatedToZeroTolerancePolicy,map=>map.MapFrom(src=>src.offenderList.Select(x=>x.actionList.Any(y=>y.zeroTolerance.ToString()=="Yes"))))
+            .ForMember(dest=>dest.RelatedToZeroTolerancePolicy,map=>map.MapFrom(src=>src.offenderList.Select(x=>x.actionList.Any(y=>y.zeroTolerance.ToString()=="Yes"))))
             ;
 
             CreateMap<DisciplineIncident, Incident>()
@@ -51,6 +51,8 @@ namespace Sif.NdsProvider.Mappers
             //.ForMember(dest=>dest//no map,map=>map.MapFrom(src=>src.victimList.Select(x=>x.victimType.FirstOrDefault())))
             
              ;
+            //CreateMap<DisciplineIncident, IncidentPerson>()
+            //    .ForMember(dest=>dest.)
         }
     }
 }

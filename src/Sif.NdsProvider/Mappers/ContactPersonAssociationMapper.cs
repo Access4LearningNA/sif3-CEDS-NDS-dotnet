@@ -15,8 +15,11 @@ namespace Sif.NdsProvider.Mappers
         }
         public ContactPersonAssociationMapper()
         {
-            //CreateMap<ContactPersonAssociation, PersonRelationship>()
-            //   .ForMember(dest => dest.ContactPriorityNumber, map => map.MapFrom(src => src.contactSequence.ToString()));
+            CreateMap<ContactPersonAssociation, PersonRelationship>()
+               .ForMember(dest => dest.ContactPriorityNumber, map => map.MapFrom(src => src.contactSequence.ToString()))
+               .ForMember(dest => dest.RefPersonRelationshipId, map => map.MapFrom(src => src.relationship.code != null ? CommonMethods.GetCodesetCode("RefPersonRelationship", "RefPersonRelationshipId", "Code", src.relationship.code):null));
+               
+               
         }
      }
 }

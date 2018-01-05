@@ -35,6 +35,8 @@ using System.Linq;
 using System.Net;
 using System.Web.Http;
 using System.Net.Http.Headers;
+using Sif.NdsProvider.Validators;
+using Sif.NdsProvider.Model;
 
 namespace Sif.Framework.Providers
 {
@@ -83,7 +85,7 @@ namespace Sif.Framework.Providers
         public virtual IHttpActionResult Post(TSingle obj, [MatrixParameter] string[] zone = null, [MatrixParameter] string[] context = null)
         {
             
-            if (!authService.VerifyAuthenticationHeader(Request.Headers.Authorization))
+            if (!authService.VerifyAuthenticationHeader((AuthenticationHeaderValue) Request.Headers.GetValues("Authorization")))
             {
                 return Unauthorized();
             }
@@ -107,9 +109,11 @@ namespace Sif.Framework.Providers
 
                     if (mustUseAdvisory.HasValue && mustUseAdvisory.Value == true)
                     {
-                        TSingle createdObject = service.Create(obj, mustUseAdvisory, zone: (zone == null ? null : zone[0]), context: (context == null ? null : context[0]));
-                        string uri = Url.Link("DefaultApi", new { controller = typeof(TSingle).Name, id = createdObject.RefId });
-                        result = Created(uri, createdObject);
+                        
+                            TSingle createdObject = service.Create(obj, mustUseAdvisory, zone: (zone == null ? null : zone[0]), context: (context == null ? null : context[0]));
+                            string uri = Url.Link("DefaultApi", new { controller = typeof(TSingle).Name, id = createdObject.RefId });
+                            result = Created(uri, createdObject);
+                        
                     }
                     else
                     {
@@ -168,7 +172,7 @@ namespace Sif.Framework.Providers
         public virtual IHttpActionResult Post(TMultiple obj, [MatrixParameter] string[] zone = null, [MatrixParameter] string[] context = null)
         {
 
-            if (!authService.VerifyAuthenticationHeader(Request.Headers.Authorization))
+            if (!authService.VerifyAuthenticationHeader((AuthenticationHeaderValue) Request.Headers.GetValues("Authorization")))
             {
                 return Unauthorized();
             }

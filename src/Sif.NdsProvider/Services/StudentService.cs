@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Sif.Framework.Model.Query;
 using Sif.Framework.Service.Providers;
 using Sif.NdsProvider.Model;
@@ -17,13 +18,13 @@ namespace Sif.NdsProvider.Services
     {
         public Student Create(Student studentObj, bool? mustUseAdvisory = null, string zone = null, string context = null)
         {
-            
-            
+           
             var person = new SIF.NDSDataModel.Person();
 
             person.refId = studentObj.refId;
             using (var _context = new CEDSContext(CommonMethods.GetConncetionString()))
             {
+                
                 _context.Person.Add(person);
                 if (studentObj.name.nameOfRecord != null && studentObj.demographics != null)
                 {

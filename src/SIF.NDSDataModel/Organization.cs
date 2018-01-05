@@ -19,6 +19,9 @@ namespace SIF.NDSDataModel
             OrganizationIdentifier = new HashSet<OrganizationIdentifier>();
             OrganizationWebsite = new HashSet<OrganizationWebsite>();
             OrganizationCalendar = new HashSet<OrganizationCalendar>();
+            Program = new HashSet<Program>();
+            OrganizationProgramType = new HashSet<OrganizationProgramType>();
+            OrganizationRelationship = new HashSet<OrganizationRelationship>();
 
             //K12School = new HashSet<K12School>();
 
@@ -61,6 +64,9 @@ namespace SIF.NDSDataModel
         public virtual ICollection<OrganizationWebsite> OrganizationWebsite { get; set; }
 
         public virtual ICollection<OrganizationCalendar> OrganizationCalendar { get; set; }
+        public virtual ICollection<Program> Program { get; set; }
+        public virtual ICollection<OrganizationProgramType> OrganizationProgramType { get; set; }
+        public virtual ICollection<OrganizationRelationship> OrganizationRelationship { get; set; }
 
         //public virtual ICollection<Person> Person { get; set; }
         //public virtual ICollection<PersonDetail> PersonDetail { get;set;}

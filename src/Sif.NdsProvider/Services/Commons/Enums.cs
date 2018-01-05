@@ -57,6 +57,21 @@ namespace Sif.NdsProvider.Services.Commons
         public const string PrimaryDisabilityType = "PrimaryDisabilityType";
         public const string LEPStatus = "LEPStatus";
         public const string FinancialExpenditureK12ProjectReportingCode = "FinancialExpenditureK12ProjectReportingCode";
+        public const string AdultBasicEducation = "Adult Basic Education";
+        public const string AdultEnglishasaSecondLanguage = "Adult English as a Second Language";
+        public const string AdultSecondaryEducation = "Adult Secondary Education";
+        public const string AlternativeEducation="Alternative Education";
+        public const string CareerandTechnicalEducation = "Career and Technical Education";
+        public const string MigrantEducation = "Migrant education";
+        public const string SpecialEducationServices = "Special Education Services";
+        public const string TeacherprofessionaldevelopmentMentoring = "Teacher professional development / Mentoring";
 
+        #region TechnicalNames(Student)
+        public const string StudentIdentificationSystem = "StudentIdentificationSystem";
+        public const string race = "race";
+        public const string ethnicity = "ethnicity";
+        public const string ElectronicMailAddressType = "ElectronicMailAddressType";
+        public const string TelephoneNumberType = "TelephoneNumberType";
+        #endregion
     }
 }

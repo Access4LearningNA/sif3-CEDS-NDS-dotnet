@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "81a3d411080574075af0665e190bba19a3abab31"
+    "signature": "ac7eda25cb002e1adc0e5229c8c6768c90b85fce"
   },
   "compilationOptions": {
     "defines": [
@@ -25,6 +25,7 @@
         "dependencies": {
           "AutoMapper": "6.1.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "3.0.1",
+          "FluentValidation.AspNetCore": "7.3.1",
           "Iesi.Collections": "4.0.2",
           "Microsoft.ApplicationInsights.AspNetCore": "2.1.1",
           "Microsoft.AspNet.WebApi": "5.2.3",
@@ -57,6 +58,7 @@
           "Microsoft.VisualStudio.Web.BrowserLink": "2.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.0",
           "NHibernate": "5.0.0",
+          "NPOI": "2.3.0",
           "Ninject": "3.3.1",
           "Sif.Framework": "1.0.0",
           "System.Configuration.ConfigurationManager": "4.4.0",
@@ -124,6 +126,26 @@
         },
         "compile": {
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        }
+      },
+      "FluentValidation/7.3.1": {
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.dll": {}
+        },
+        "compile": {
+          "lib/netstandard2.0/FluentValidation.dll": {}
+        }
+      },
+      "FluentValidation.AspNetCore/7.3.1": {
+        "dependencies": {
+          "FluentValidation": "7.3.1",
+          "Microsoft.AspNetCore.Mvc": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.AspNetCore.dll": {}
+        },
+        "compile": {
+          "lib/netstandard2.0/FluentValidation.AspNetCore.dll": {}
         }
       },
       "Iesi.Collections/4.0.2": {
@@ -1767,6 +1789,23 @@
           "lib/netstandard2.0/Ninject.dll": {}
         }
       },
+      "NPOI/2.3.0": {
+        "dependencies": {
+          "SharpZipLib": "0.86.0"
+        },
+        "runtime": {
+          "lib/net40/NPOI.OOXML.dll": {},
+          "lib/net40/NPOI.OpenXml4Net.dll": {},
+          "lib/net40/NPOI.OpenXmlFormats.dll": {},
+          "lib/net40/NPOI.dll": {}
+        },
+        "compile": {
+          "lib/net40/NPOI.OOXML.dll": {},
+          "lib/net40/NPOI.OpenXml4Net.dll": {},
+          "lib/net40/NPOI.OpenXmlFormats.dll": {},
+          "lib/net40/NPOI.dll": {}
+        }
+      },
       "NuGet.Frameworks/4.0.0": {
         "dependencies": {
           "NETStandard.Library": "2.0.0"
@@ -1976,6 +2015,14 @@
             "rid": "win-x86",
             "assetType": "native"
           }
+        }
+      },
+      "SharpZipLib/0.86.0": {
+        "runtime": {
+          "lib/20/ICSharpCode.SharpZipLib.dll": {}
+        },
+        "compile": {
+          "lib/20/ICSharpCode.SharpZipLib.dll": {}
         }
       },
       "System.AppContext/4.3.0": {
@@ -3490,6 +3537,20 @@
       "path": "automapper.extensions.microsoft.dependencyinjection/3.0.1",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.3.0.1.nupkg.sha512"
     },
+    "FluentValidation/7.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6YOJAaOO1N+iL22OeN4xZqf+BJ9z2zXPl4B2OmnHX3Vsr35FGdFERZNhidpD9AGGgXOfYBpMH0xryFdLWTU22A==",
+      "path": "fluentvalidation/7.3.1",
+      "hashPath": "fluentvalidation.7.3.1.nupkg.sha512"
+    },
+    "FluentValidation.AspNetCore/7.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pbthTaxWbWy01Zrcd9auqtmXtnMoX61fjNpk6jr8p/3CRrbcHUy7UQPiqKYCDvKIqkEACivKULloB0942xBJhQ==",
+      "path": "fluentvalidation.aspnetcore/7.3.1",
+      "hashPath": "fluentvalidation.aspnetcore.7.3.1.nupkg.sha512"
+    },
     "Iesi.Collections/4.0.2": {
       "type": "package",
       "serviceable": true,
@@ -4351,6 +4412,13 @@
       "path": "ninject/3.3.1",
       "hashPath": "ninject.3.3.1.nupkg.sha512"
     },
+    "NPOI/2.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5Z4k96+n17oKdKvoEYxTzkphkPgnUTiNJCPCxDibrm+v0w1LE0xtfinHJaXJrr2tDX2821azwbODSDU3rJ7Tzg==",
+      "path": "npoi/2.3.0",
+      "hashPath": "npoi.2.3.0.nupkg.sha512"
+    },
     "NuGet.Frameworks/4.0.0": {
       "type": "package",
       "serviceable": true,
@@ -4518,6 +4586,13 @@
       "sha512": "sha512-YhEdSQUsTx+C8m8Bw7ar5/VesXvCFMItyZF7G1AUY+OM0VPZUOeAVpJ4Wl6fydBGUYZxojTDR3I6Bj/+BPkJNA==",
       "path": "runtime.win-x86.runtime.native.system.data.sqlclient.sni/4.4.0",
       "hashPath": "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512"
+    },
+    "SharpZipLib/0.86.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5DbS1SlKLMi+WG00Cm0ueYf2oyXJrowETQk8nx96rmdjTuHsA3laPykGV7Sxi0R5Xxfx0Kh/EfacAZ1f6M7y/g==",
+      "path": "sharpziplib/0.86.0",
+      "hashPath": "sharpziplib.0.86.0.nupkg.sha512"
     },
     "System.AppContext/4.3.0": {
       "type": "package",

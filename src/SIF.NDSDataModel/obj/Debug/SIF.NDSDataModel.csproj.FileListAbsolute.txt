@@ -137,4 +137,3 @@ D:\Projects\SIF\src\SIF.NDSDataModel\bin\Debug\Microsoft.Extensions.Configuratio
 D:\Projects\SIF\src\SIF.NDSDataModel\bin\Debug\Microsoft.Extensions.Configuration.dll
 D:\Projects\SIF\src\SIF.NDSDataModel\bin\Debug\Microsoft.Extensions.Configuration.xml
 D:\Projects\SIF\src\SIF.NDSDataModel\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
-D:\Projects\SIF\src\SIF.NDSDataModel\obj\Debug\SIF.NDSDataModel.csprojResolveAssemblyReference.cache

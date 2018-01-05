@@ -62,7 +62,20 @@ namespace SIF.NDSDataModel
         public virtual DbSet<OrganizationProgramType> OrganizationProgramType { get; set; }
         public virtual DbSet<Program> Program { get; set; }
         public virtual DbSet<RefOrganizationIdentificationSystem> RefOrganizationIdentificationSystem { get; set; }
+        public virtual DbSet<RefProgramType> RefProgramType { get; set; }
+        public virtual DbSet<PersonRelationship> PersonRelationship { get; set; }
+
+        public virtual DbSet<ProgramParticipationAE> ProgramParticipationAE { get; set; }
+        public virtual DbSet<ProgramParticipationCte> ProgramParticipationCte { get; set; }
+        public virtual DbSet<ProgramParticipationFoodService> ProgramParticipationFoodService { get; set; }
+        public virtual DbSet<ProgramParticipationMigrant> ProgramParticipationMigrant { get; set; }
+        public virtual DbSet<ProgramParticipationNeglected> ProgramParticipationNeglected { get; set; }
+      
+        public virtual DbSet<ProgramParticipationTeacherPrep> ProgramParticipationTeacherPrep { get; set; }
        
+        public virtual DbSet<ProgramParticipationTitleIIILep> ProgramParticipationTitleIIILep { get; set; }
+        public virtual DbSet<IncidentPerson> IncidentPerson { get; set; }
+        public virtual DbSet<RefIncidentPersonRoleType> RefIncidentPersonRoleType { get; set; }
         //public virtual DbSet<OrganizationLocation> OrganizationLocation { get; set; }
 
 
@@ -100,8 +113,9 @@ namespace SIF.NDSDataModel
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
-           // modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<IncidentPerson>()
+            .HasKey(c => new { c.IncidentId, c.PersonId ,c.RefIncidentPersonRoleTypeId});
+            // modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
    
 }

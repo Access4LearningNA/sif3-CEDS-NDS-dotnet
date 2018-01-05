@@ -13,6 +13,8 @@ using Sif.NdsProvider.Mappers;
 using SIF.NDSDataModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using Sif.NdsProvider.Validators;
+using FluentValidation.AspNetCore;
 
 namespace SifNdsProvider
 {
@@ -51,7 +53,18 @@ namespace SifNdsProvider
             services.AddOptions();
             services.AddMvcCore()
                  .AddJsonFormatters().AddXmlSerializerFormatters();
+            services.AddMvcCore(options =>
+       {
+           options.RequireHttpsPermanent = true; // does not affect api requests
+           options.RespectBrowserAcceptHeader = true; // false by default
 
+
+       });
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(ValidateModelAttribute));
+            })
+        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<StudentValidator>());
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<CEDSContext>(options => options.UseSqlServer(connection));
             services.AddSingleton<IConfiguration>(Configuration);
@@ -85,6 +98,7 @@ namespace SifNdsProvider
                     name: "default",
                     template: "{controller}/{action}");
             });
+            
             //appLifetime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());
         }
     }

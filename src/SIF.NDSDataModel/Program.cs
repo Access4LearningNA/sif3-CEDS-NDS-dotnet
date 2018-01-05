@@ -10,9 +10,10 @@ namespace SIF.NDSDataModel
     public partial class Program
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [ForeignKey("Organization")]
         public int OrganizationId { get; set; }
 
         public decimal? CreditsRequired { get; set; }
+        public virtual Organization Organization { get; set; }
     }
 }

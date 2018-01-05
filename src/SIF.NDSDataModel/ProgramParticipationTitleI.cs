@@ -10,10 +10,9 @@ namespace SIF.NDSDataModel
     public partial class ProgramParticipationTitleI
     {
         [Key]
-        [ForeignKey("PersonProgramParticipation")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int PersonProgramParticipationId { get; set; }
 
         public int? RefTitleIIndicatorId { get; set; }
-        public virtual PersonProgramParticipation PersonProgramParticipation { get; set; }
     }
 }
